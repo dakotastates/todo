@@ -1,0 +1,15 @@
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+/Users/dakotastates/.rvm/rubies/ruby-3.1.2/bin/ruby -I /Users/dakotastates/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230202-48634-1ai8o6.rb extconf.rb
+creating Makefile
+
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= install
+/opt/homebrew/opt/coreutils/bin/ginstall -c -m 0755 bootsnap.bundle ./.gem.20230202-48634-g8e06u/bootsnap

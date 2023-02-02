@@ -1,0 +1,16 @@
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/debug-1.7.1/ext/debug
+/Users/dakotastates/.rvm/rubies/ruby-3.1.2/bin/ruby -I /Users/dakotastates/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230202-48634-395ojx.rb extconf.rb
+creating Makefile
+
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/debug-1.7.1/ext/debug
+make DESTDIR\= clean
+
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/debug-1.7.1/ext/debug
+make DESTDIR\=
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+
+current directory: /Users/dakotastates/reactprojects/todo/vendor/bundle/ruby/3.1.0/gems/debug-1.7.1/ext/debug
+make DESTDIR\= install
+/opt/homebrew/opt/coreutils/bin/ginstall -c -m 0755 debug.bundle ./.gem.20230202-48634-88s7qy/debug
