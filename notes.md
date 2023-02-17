@@ -5,3 +5,11 @@ run rails db:create
 create client folder
 run npx create-react-app . inside client folder 
 push everything to github 
+
+
+Features:  
+- Speech to text notes
+- calendar 
+- Speech commands for notes, add to calendar, edit notes, background color, opening websites, etc
+- text input 
+- User authentication

@@ -1,4 +1,6 @@
-
+html{
+  height: 100%;
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,5 +9,6 @@
 body {
   background-color: rgba(0, 0, 0, 0.8);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+  color: white; 
+  height: 100%;
 }
