@@ -11,7 +11,7 @@ import "./App.css";
 
 function App() {  
 
-  const [drawerToggle, setDrawerToggle] = useState(false)
+  const [drawerToggle, setDrawerToggle] = useState(true)
   const [todoToggle, setTodoToggle] = useState(false)
 
   const drawerToggleClickHandler = () =>{
@@ -22,15 +22,15 @@ function App() {
     setTodoToggle(!todoToggle)
   } 
 
-  const backdropClickHandler = () =>{
-    setDrawerToggle(false)
-  } 
+  // const backdropClickHandler = () =>{
+  //   setDrawerToggle(false)
+  // } 
 
-  let backdrop;
+  // let backdrop;
   
-  if (drawerToggle) {
-    backdrop = <Backdrop click={backdropClickHandler} /> 
-  } 
+  // if (drawerToggle) {
+  //   backdrop = <Backdrop click={backdropClickHandler} /> 
+  // } 
 
   let todos;
   let outputClasses = 'main-output'
@@ -47,14 +47,15 @@ function App() {
 
   return (
     <div style={{height: '100%'}}>
-      <h1>Speech to Text Notes App</h1> 
+      
       <Toolbar 
         drawerToggleClickHandler = {drawerToggleClickHandler}
         todoToggleClickHandler = {todoToggleClickHandler}
       />
-      <SideDrawer show={drawerToggle} />
-      {backdrop}
+      <h1>Speech to Text Notes App</h1> 
+
       <div className='main-content'>
+      <SideDrawer show={drawerToggle} />
         <div className={inputClasses}>
           <TodosInput />
         </div>
@@ -67,4 +68,4 @@ function App() {
   );
 }
 
-export default App;  
+export default App; 
