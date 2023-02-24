@@ -1,6 +1,48 @@
-.input__container{
+.todos-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* align-items: center; */
+    margin: 40px;
+}
+
+.todos__date{
+    padding: 0 0 10px 0;
+    font-size: 2rem;
+}
+
+.todos__list{
+    
+} 
+
+/* .task li{
+    display: flex;
+}  */ 
+
+.task__info{
+    display: flex;
+    /* background-color: pink; */
+    /* align-content: space-around; */
+}
+
+.task{
+    display: flex;
     align-items: center;
+    justify-content:space-between ;
+    list-style: none;
+    padding: 0 0 5px 0;
+    border-bottom: .5px solid;
+    margin: 10px 0 10px 0;
+    font-size: 1.5rem;
+} 
+
+.task__date{
+    font-size: 1rem;
+} 
+
+.task__checkbox {
+    padding-right: 10px;
+}
+
+.task__category{
+
 }

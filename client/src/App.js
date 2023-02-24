@@ -22,6 +22,12 @@ function App() {
     setTodoToggle(!todoToggle)
   } 
 
+  let mainContainerClasses = 'main-container'
+
+  if (drawerToggle){
+    mainContainerClasses = 'main-container open'
+  }
+
   // const backdropClickHandler = () =>{
   //   setDrawerToggle(false)
   // } 
@@ -32,18 +38,19 @@ function App() {
   //   backdrop = <Backdrop click={backdropClickHandler} /> 
   // } 
 
-  let todos;
-  let outputClasses = 'main-output'
-  let inputClasses = 'main-input'
+  // let todos;
+  
+  // let outputClasses = 'main-output'
+  // let inputClasses = 'main-input'
 
-  if (todoToggle){
-    todos = <Todos /> 
-    outputClasses='main-output'
-    inputClasses='main-input'
-  } else {
-    inputClasses='main-input closed'
-    outputClasses='main-output closed'
-  }
+  // if (todoToggle){
+  //   todos = <Todos /> 
+  //   outputClasses='main-output'
+  //   inputClasses='main-input'
+  // } else {
+  //   inputClasses='main-input closed'
+  //   outputClasses='main-output closed'
+  // }
 
   return (
     <div style={{height: '100%'}}>
@@ -52,20 +59,26 @@ function App() {
         drawerToggleClickHandler = {drawerToggleClickHandler}
         todoToggleClickHandler = {todoToggleClickHandler}
       />
-      <h1>Speech to Text Notes App</h1> 
 
-      <div className='main-content'>
+      <div className={mainContainerClasses}>
       <SideDrawer show={drawerToggle} />
-        <div className={inputClasses}>
-          <TodosInput />
-        </div>
-        <div className={outputClasses}>
-          {todos}
-        </div>
+      <div className='main-content'>
+        <Todos />
+      </div>
+        
       </div>
       
     </div>
   );
 }
 
-export default App; 
+export default App;  
+
+
+
+{/* <div className={inputClasses}>
+<TodosInput />
+</div>
+<div className={outputClasses}>
+{todos}
+</div> */}

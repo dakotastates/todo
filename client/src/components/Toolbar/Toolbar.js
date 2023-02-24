@@ -1,5 +1,6 @@
 import React from "react"; 
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import { Plus, Bell, Person, House } from 'react-bootstrap-icons';
 
 import './Toolbar.css'
 
@@ -11,13 +12,13 @@ const Toolbar = props =>{
                     <DrawerToggleButton click={props.drawerToggleClickHandler} />
                 </div>
                 <div className='toolbar__logo'>LOGO</div>
-                <div className='spacer' />
+                <div className='spacer'></div>
                 <div className='toolbar__navigation-items'>
                     <ul>
-                        <li>HOME</li>
-                        <li onClick={props.todoToggleClickHandler}>TODO LIST</li>
-                        <li>CALENDAR</li>
-                        <li>PROFILE</li>
+                        <li><House /></li>
+                        <li><Plus /></li>
+                        <li><Bell /></li>
+                        <li><Person /></li>
                     </ul>
                 </div>
             </nav>

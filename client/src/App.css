@@ -2,55 +2,45 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ .main-container{
+  position: fixed;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
- */ 
-
- .main-content{
-  display: flex;
-  margin-top: 64px;
-  height: 80vh;
+  top: 56px;
+  width: 100%;
+  height: 100%;
+  padding: 0 0 56px 50px;
  }
 
- .main-input{
+ .main-container.open{
+  padding-left: 300px;
+ } 
+
+ .main-content{ 
+  color: black;
+  background-color: #DADADA;
+  width: 100%;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px; 
+ }
+
+ /* .main-input{
   flex: .8;
   background-color: tan;
   
- }  
+ }   */
 
- .main-output{
+ /* .main-output{
   flex: .2;
   background-color: white; 
   color: black;
-  /* transform: translateX(0); */
-  /* transition: transform 0.3s ease-out; */
 
- } 
+ }  */
 
- .main-input.closed {
+ /* .main-input.closed {
   flex: 1;
- }  
+ }   */
 
- .main-output.closed{
+ /* .main-output.closed{
   flex: 0;
-  /* transform:translateX(100%) */
- }
+ } */
