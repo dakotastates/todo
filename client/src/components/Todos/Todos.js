@@ -9,7 +9,8 @@ const Todos = props =>{
             date: '2/23/23' ,
             task: 'clean room', 
             category: 'personal',
-            priority: 'Minor/low'
+            priority: 'Minor/low', 
+            completed: false
 
         },
         {
@@ -17,14 +18,31 @@ const Todos = props =>{
             date: '2/24/23' ,
             task:'make dinner',
             category: 'personal',
-            priority: 'Major/high'
+            priority: 'Major/high', 
+            completed: true
         },
         {
             id: 3,
             date: '2/23/23' ,
             task: 'order tickets',
             category: 'work', 
-            priority: 'Critical/severe'
+            priority: 'Critical/severe', 
+            completed: false
+        }, 
+        {
+            id: 4,
+            date: '2/23/23' ,
+            task: 'Buy Groceries',
+            category: 'personal', 
+            priority: 'Medium/moderate', 
+            completed: false
+        }, 
+        {
+            id: 5,
+            date: '2/23/23' ,
+            task: 'Pet a dog',
+            category: 'work',
+            completed: false
         }
     ]
 
@@ -32,12 +50,12 @@ const Todos = props =>{
         <div className='todos-container'>
             <div className='todos__date'>Today</div>
             <div className='todos__list'>
-                <ul>
-                    {data.map(task => (
-                        <Task task={task} />
-                        ))}
-                </ul>
-
+                 {data.map(task => (
+                    <Task key={task.id} task={task} />
+                 ))}
+            </div> 
+            <div className='todos__completed'>
+                Completed Tasks
             </div>
         </div>
     )

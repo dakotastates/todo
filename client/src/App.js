@@ -4,7 +4,8 @@ import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/Backdrop/Backdrop";
 import Todos from "./components/Todos/Todos";
-import TodosInput from "./components/Todos/TodosInput";
+import TodosInput from "./components/Todos/TodosInput"; 
+import RightSideDrawer from "./components/SideDrawer/RightSideDrawer";
 
 import "./App.css";
 
@@ -12,15 +13,26 @@ import "./App.css";
 function App() {  
 
   const [drawerToggle, setDrawerToggle] = useState(true)
-  const [todoToggle, setTodoToggle] = useState(false)
+  // const [todoToggle, setTodoToggle] = useState(false)
+  const [rightDrawerToggle, setRightDrawerToggle] = useState(false)
 
   const drawerToggleClickHandler = () =>{
     setDrawerToggle(!drawerToggle)
   } 
 
-  const todoToggleClickHandler = () =>{
-    setTodoToggle(!todoToggle)
-  } 
+  // const todoToggleClickHandler = () =>{
+  //   setTodoToggle(!todoToggle)
+  // } 
+
+  const righDrawerClickHandler = () =>{
+    setRightDrawerToggle(!rightDrawerToggle)
+  }  
+
+  let rightDrawerToggleBtnClasses = 'right-drawer-toggle__button'
+  
+  if(!rightDrawerToggle){
+    rightDrawerToggleBtnClasses = 'right-drawer-toggle__button closed'
+  }
 
   let mainContainerClasses = 'main-container'
 
@@ -57,15 +69,16 @@ function App() {
       
       <Toolbar 
         drawerToggleClickHandler = {drawerToggleClickHandler}
-        todoToggleClickHandler = {todoToggleClickHandler}
+       
       />
 
       <div className={mainContainerClasses}>
-      <SideDrawer show={drawerToggle} />
-      <div className='main-content'>
-        <Todos />
-      </div>
-        
+        <SideDrawer show={drawerToggle} />
+        <div className='main-content'>
+          <Todos />
+        </div>
+        <div onClick={righDrawerClickHandler} className={rightDrawerToggleBtnClasses}>{rightDrawerToggle ? `>` : `<`}</div>
+        <RightSideDrawer show={rightDrawerToggle} />
       </div>
       
     </div>

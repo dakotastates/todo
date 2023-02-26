@@ -1,0 +1,39 @@
+.right-side-drawer{
+    display: none;
+    flex-direction: column;
+    /* background: grey; */
+    max-width: 300px;
+    width: 100%;
+    box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
+    color: black;
+    padding: 20px;
+} 
+
+.right-side-drawer.open{
+    /* max-width: 300px; */
+    display: flex;
+}
+
+.right-side-drawer__text{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.right-side_drawer__content{
+    width: 100%;
+    /* background-color: green; */
+    
+} 
+
+.right-side_drawer__content li{
+    list-style: none;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid;
+    margin: 5px 0 5px 0;
+    width: 100%;
+    /* background-color: pink; */
+}
+
+
+
