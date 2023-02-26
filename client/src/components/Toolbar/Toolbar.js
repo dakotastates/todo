@@ -1,6 +1,8 @@
 import React from "react"; 
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import { Plus, Bell, Person, House } from 'react-bootstrap-icons';
+// import { Link } from 'react-router-dom';
+
 
 import './Toolbar.css'
 
@@ -15,11 +17,12 @@ const Toolbar = props =>{
                 <div className='spacer'></div>
                 <div className='toolbar__navigation-items'>
                     <ul>
-                        <li><House /></li>
+                        <li></li>
                         <li><Plus /></li>
                         <li><Bell /></li>
                         <li><Person /></li>
                     </ul>
+                    
                 </div>
             </nav>
         </header>

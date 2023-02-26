@@ -1,11 +1,14 @@
 import React, { useState, useRef } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
-import Backdrop from "./components/Backdrop/Backdrop";
-import Todos from "./components/Todos/Todos";
-import TodosInput from "./components/Todos/TodosInput"; 
+// import Todos from "./components/Todos/Todos";
 import RightSideDrawer from "./components/SideDrawer/RightSideDrawer";
+import HomePage from "./pages/HomePage";
+import CalendarPage from './pages/CalendarPage'
+import TasksPage from "./pages/TasksPage";
+import NotFound from "./pages/NotFound";
 
 import "./App.css";
 
@@ -13,16 +16,11 @@ import "./App.css";
 function App() {  
 
   const [drawerToggle, setDrawerToggle] = useState(true)
-  // const [todoToggle, setTodoToggle] = useState(false)
   const [rightDrawerToggle, setRightDrawerToggle] = useState(false)
 
   const drawerToggleClickHandler = () =>{
     setDrawerToggle(!drawerToggle)
   } 
-
-  // const todoToggleClickHandler = () =>{
-  //   setTodoToggle(!todoToggle)
-  // } 
 
   const righDrawerClickHandler = () =>{
     setRightDrawerToggle(!rightDrawerToggle)
@@ -40,58 +38,28 @@ function App() {
     mainContainerClasses = 'main-container open'
   }
 
-  // const backdropClickHandler = () =>{
-  //   setDrawerToggle(false)
-  // } 
-
-  // let backdrop;
-  
-  // if (drawerToggle) {
-  //   backdrop = <Backdrop click={backdropClickHandler} /> 
-  // } 
-
-  // let todos;
-  
-  // let outputClasses = 'main-output'
-  // let inputClasses = 'main-input'
-
-  // if (todoToggle){
-  //   todos = <Todos /> 
-  //   outputClasses='main-output'
-  //   inputClasses='main-input'
-  // } else {
-  //   inputClasses='main-input closed'
-  //   outputClasses='main-output closed'
-  // }
-
   return (
-    <div style={{height: '100%'}}>
-      
-      <Toolbar 
-        drawerToggleClickHandler = {drawerToggleClickHandler}
-       
-      />
-
-      <div className={mainContainerClasses}>
+    <Router>
+      <div style={{height: '100%'}}>
+        <Toolbar drawerToggleClickHandler = {drawerToggleClickHandler}/>
+        
+        <div className={mainContainerClasses}>
         <SideDrawer show={drawerToggle} />
         <div className='main-content'>
-          <Todos />
+          <Routes>
+            <Route path='/tasks' element={<><TasksPage/></>} />
+            <Route path='/calendar' element={<><CalendarPage/></>} />
+            <Route path='/' element={<><HomePage/></>} />
+            <Route path="*" element={<><NotFound/></>}/>
+          </Routes>
+          </div>
+          <div onClick={righDrawerClickHandler} className={rightDrawerToggleBtnClasses}>{rightDrawerToggle ? `>` : `<`}</div>
+          <RightSideDrawer show={rightDrawerToggle} />
         </div>
-        <div onClick={righDrawerClickHandler} className={rightDrawerToggleBtnClasses}>{rightDrawerToggle ? `>` : `<`}</div>
-        <RightSideDrawer show={rightDrawerToggle} />
+        
       </div>
-      
-    </div>
+    </Router>
   );
 }
 
 export default App;  
-
-
-
-{/* <div className={inputClasses}>
-<TodosInput />
-</div>
-<div className={outputClasses}>
-{todos}
-</div> */}

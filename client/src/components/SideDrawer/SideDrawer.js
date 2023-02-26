@@ -1,5 +1,6 @@
 import React from "react";
 import { Inbox, Calendar, Plus } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 
 import './SideDrawer.css'; 
@@ -12,18 +13,20 @@ const SideDrawer = props => {
     return (
      <nav className={drawerClasses}>
         <ul>
-            <li>
+            <Link to='/tasks'>
+              <li>
                 <div className='side-drawer__icon'><Inbox /></div>
                 <div className='side-drawer__icon-text'>Inbox</div>
-            </li>
-            <li>
-                <div className='side-drawer__icon'><Calendar /></div> 
-                <div className='side-drawer__icon-text'>Calendar</div>
-            </li>
-            <li>
-                <div className='side-drawer__icon'><Plus /></div> 
-                <div className='side-drawer__icon-text'>Plus</div>
-            </li>
+              </li>
+            </Link>
+        
+            <Link to='/calendar'>
+                <li>
+                    <div className='side-drawer__icon'><Calendar /></div> 
+                    <div className='side-drawer__icon-text'>Calendar</div>
+                </li>
+            </Link>
+
         </ul>
     </nav>
 )}

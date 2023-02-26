@@ -1,22 +1,18 @@
-.todos-container{
+.tasks-container{
     display: flex;
     flex-direction: column;
     /* align-items: center; */
     margin: 40px;
 }
 
-.todos__date{
+.tasks__date{
     padding: 0 0 10px 0;
     font-size: 2rem;
 }
 
-.todos__list{
+.tasks__list{
     
 } 
-
-/* .task li{
-    display: flex;
-}  */ 
 
 .task__info{
     display: flex;
@@ -84,8 +80,4 @@
 .task__checkbox.p4{
     background-color: red;
     /* border-color: red; */
-}
-
-.task__category{
-
 }

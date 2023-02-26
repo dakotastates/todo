@@ -1,7 +1,7 @@
 import Task from "./Task";
-import './Todos.css'
+import './Tasks.css'
 
-const Todos = props =>{ 
+const Tasks = props =>{ 
 
     const data = [
         {
@@ -47,18 +47,16 @@ const Todos = props =>{
     ]
 
     return(
-        <div className='todos-container'>
-            <div className='todos__date'>Today</div>
-            <div className='todos__list'>
+        <div className='tasks-container'>
+            <div className='tasks__date'>Today</div>
+            <div className='tasks__list'>
                  {data.map(task => (
                     <Task key={task.id} task={task} />
                  ))}
             </div> 
-            <div className='todos__completed'>
-                Completed Tasks
-            </div>
+
         </div>
     )
 } 
 
-export default Todos;
+export default Tasks;
