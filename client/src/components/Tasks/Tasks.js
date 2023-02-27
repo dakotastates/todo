@@ -1,56 +1,28 @@
+import {useState, useEffect} from 'react'
 import Task from "./Task";
 import './Tasks.css'
 
-const Tasks = props =>{ 
+import {useDispatch, useSelector} from 'react-redux'
+import {getTasks} from '../../store/tasks'
 
-    const data = [
-        {
-            id: 1,
-            date: '2/23/23' ,
-            task: 'clean room', 
-            category: 'personal',
-            priority: 'Minor/low', 
-            completed: false
+const Tasks = props =>{  
 
-        },
-        {
-            id: 2,
-            date: '2/24/23' ,
-            task:'make dinner',
-            category: 'personal',
-            priority: 'Major/high', 
-            completed: true
-        },
-        {
-            id: 3,
-            date: '2/23/23' ,
-            task: 'order tickets',
-            category: 'work', 
-            priority: 'Critical/severe', 
-            completed: false
-        }, 
-        {
-            id: 4,
-            date: '2/23/23' ,
-            task: 'Buy Groceries',
-            category: 'personal', 
-            priority: 'Medium/moderate', 
-            completed: false
-        }, 
-        {
-            id: 5,
-            date: '2/23/23' ,
-            task: 'Pet a dog',
-            category: 'work',
-            completed: false
-        }
-    ]
+    const dispatch = useDispatch()
+    const { tasks } = useSelector(state => state.tasks) 
+
+    if (tasks) {
+        console.log('tasks:',tasks)
+      }
+
+    useEffect(()=>{
+        dispatch(getTasks())
+    },[])
 
     return(
         <div className='tasks-container'>
             <div className='tasks__date'>Today</div>
             <div className='tasks__list'>
-                 {data.map(task => (
+                 {tasks.map(task => (
                     <Task key={task.id} task={task} />
                  ))}
             </div> 

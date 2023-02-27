@@ -36,7 +36,22 @@ function App() {
 
   if (drawerToggle){
     mainContainerClasses = 'main-container open'
-  }
+  } 
+
+
+
+
+  // const dispatch = useDispatch()
+  // const { user } = useSelector(state => state.user) 
+
+  // if (user) {
+  //   return (
+  //     <div>
+  //       Hi, {user.username}!
+  //       <button onClick={() => dispatch(logout())}>Logout</button>
+  //     </div>
+  //   )
+  // }
 
   return (
     <Router>
@@ -45,7 +60,7 @@ function App() {
         
         <div className={mainContainerClasses}>
         <SideDrawer show={drawerToggle} />
-        <div className='main-content'>
+        <div className='main-content'> 
           <Routes>
             <Route path='/tasks' element={<><TasksPage/></>} />
             <Route path='/calendar' element={<><CalendarPage/></>} />
@@ -55,8 +70,7 @@ function App() {
           </div>
           <div onClick={righDrawerClickHandler} className={rightDrawerToggleBtnClasses}>{rightDrawerToggle ? `>` : `<`}</div>
           <RightSideDrawer show={rightDrawerToggle} />
-        </div>
-        
+        </div> 
       </div>
     </Router>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Inbox, Calendar, Plus } from 'react-bootstrap-icons';
+import { Inbox, Calendar, CardList } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 
@@ -15,8 +15,8 @@ const SideDrawer = props => {
         <ul>
             <Link to='/tasks'>
               <li>
-                <div className='side-drawer__icon'><Inbox /></div>
-                <div className='side-drawer__icon-text'>Inbox</div>
+                <div className='side-drawer__icon'><CardList /></div>
+                <div className='side-drawer__icon-text'>Tasks</div>
               </li>
             </Link>
         
