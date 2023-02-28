@@ -1,6 +1,20 @@
 import './RightSideDrawer.css';  
+import { useLocation } from 'react-router-dom' 
+import TasksDrawer from '../Tasks/TasksDrawer';
+import CalendarDrawer from '../Calendar/CalendarDrawer';
+
 
 const RightSideDrawer = props =>{
+    const location = useLocation();
+    console.log(location.pathname);
+
+    let content
+
+    if (location.pathname == '/tasks'){
+        content = <TasksDrawer />
+    }  else if(location.pathname == '/calendar'){
+        content = <CalendarDrawer />
+    }
 
     let rightDrawerClasses = 'right-side-drawer'; 
     if (props.show){
@@ -9,14 +23,7 @@ const RightSideDrawer = props =>{
 
     return(
         <div className={rightDrawerClasses}>
-            <div className='right-side-drawer__text'>Completed Tasks</div>
-            <div className='right-side_drawer__content'>
-                <ul>
-                    <li>task 1</li>
-                    <li>task 2</li>
-                    <li>task 3</li>
-                </ul>
-            </div>
+            {content}
         </div>
     )
 } 

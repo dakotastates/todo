@@ -16,7 +16,7 @@ const data = [
         task:'make dinner',
         category: 'personal',
         priority: 'Major/high', 
-        completed: true
+        completed: false
     },
     {
         id: 3,
@@ -56,12 +56,18 @@ const slice = createSlice({
     getTasksSuccess: (state, action) =>  {
       state.tasks = action.payload
     },
+    completeTaskSuccess: (state, action) =>  {
+      const task = state.tasks.find((task) => task.id === action.payload)
+      if (task) {
+        task.completed = !task.completed
+      }
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess } = slice.actions
 export const createTask = (task) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/login/', { username, password })
@@ -74,6 +80,15 @@ export const getTasks = () => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
     return dispatch(getTasksSuccess(data))
+  } catch (e) {
+    return console.error(e.message);
+  }
+} 
+
+export const completeTask = (id) => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(completeTaskSuccess(id))
   } catch (e) {
     return console.error(e.message);
   }

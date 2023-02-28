@@ -16,7 +16,8 @@ import "./App.css";
 function App() {  
 
   const [drawerToggle, setDrawerToggle] = useState(true)
-  const [rightDrawerToggle, setRightDrawerToggle] = useState(false)
+  const [rightDrawerToggle, setRightDrawerToggle] = useState(false) 
+
 
   const drawerToggleClickHandler = () =>{
     setDrawerToggle(!drawerToggle)
@@ -25,6 +26,7 @@ function App() {
   const righDrawerClickHandler = () =>{
     setRightDrawerToggle(!rightDrawerToggle)
   }  
+
 
   let rightDrawerToggleBtnClasses = 'right-drawer-toggle__button'
   
@@ -41,17 +43,7 @@ function App() {
 
 
 
-  // const dispatch = useDispatch()
-  // const { user } = useSelector(state => state.user) 
 
-  // if (user) {
-  //   return (
-  //     <div>
-  //       Hi, {user.username}!
-  //       <button onClick={() => dispatch(logout())}>Logout</button>
-  //     </div>
-  //   )
-  // }
 
   return (
     <Router>
@@ -62,7 +54,7 @@ function App() {
         <SideDrawer show={drawerToggle} />
         <div className='main-content'> 
           <Routes>
-            <Route path='/tasks' element={<><TasksPage/></>} />
+            <Route path='/tasks' element={<><TasksPage /></>} />
             <Route path='/calendar' element={<><CalendarPage/></>} />
             <Route path='/' element={<><HomePage/></>} />
             <Route path="*" element={<><NotFound/></>}/>
