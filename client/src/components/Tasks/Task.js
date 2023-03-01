@@ -1,8 +1,10 @@
-import { Check } from 'react-bootstrap-icons';
+import {useState} from 'react'
+import { Check, Trash } from 'react-bootstrap-icons';
 import {completeTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
 
 const Task = props =>{ 
+    const [active, setActive] = useState(false) 
 
     const dispatch = useDispatch()
 
@@ -10,7 +12,13 @@ const Task = props =>{
 
     if(props.task.completed){
         taskClasses = 'task completed'
-    }
+    } 
+
+    let activeTaskClasses = 'task__active-container' 
+
+    if(active && (props.activeTask === props.task.id)){
+        activeTaskClasses = 'task__active-container active'
+    } 
 
 
 
@@ -28,21 +36,43 @@ const Task = props =>{
 
     const handleCompleted = () =>{ 
         dispatch(completeTask(props.task.id)) 
-    }
+    } 
+
+    const handleActiveTask = () =>{
+        setActive(!active)
+        props.setActiveTask(props.task.id) 
+    } 
+
+
 
     return(
-        <div className={taskClasses}>
-            
-            <div className='task__info'>
-                {props.task.completed ? <Check onClick={handleCompleted} /> : <div onClick={handleCompleted} className={taskCheckboxClasses} />}
-                <div className='task__todo'>
-                    {props.task.task}
-                    <div className='task__date'>{props.task.date}</div>
+        <div onClick={handleActiveTask} className={taskClasses}>
+            <div className='task__container'>
+                <div className='task__info-container'>
+                    <div className='task__info'>
+                        {props.task.completed ? <Check onClick={handleCompleted} /> : <div onClick={handleCompleted} className={taskCheckboxClasses} />}
+                        <div className='task__todo'>
+                            {props.task.task}
+                            <div className='task__date'>{props.task.date}</div>
+                        </div>
+                    </div>
+                
+                <div className='task__category'>{props.task.category}</div>
                 </div>
             </div>
-             <div className='task__category'>{props.task.category}</div>
-             
+            <div className={activeTaskClasses}>Active Container</div>
         </div>
     )
 }
 export default Task
+
+
+{/* <div className='task__info'>
+                    {props.task.completed ? <Check onClick={handleCompleted} /> : <div onClick={handleCompleted} className={taskCheckboxClasses} />}
+                    <div className='task__todo'>
+                        {props.task.task}
+                        <div className='task__date'>{props.task.date}</div>
+                    </div>
+                </div>
+                
+                <div className='task__category'>{props.task.category}</div> */}

@@ -20,26 +20,44 @@
     align-items: center;
     /* background-color: pink; */
     /* align-content: space-around; */
+} 
+
+.task__container{
+
+
 }
 
 .task{
     display: flex;
-    align-items: center;
-    justify-content:space-between ;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content:space-between ; */
     list-style: none;
     padding: 10px ;
     border-bottom: .5px solid;
     margin: 10px 0 10px 0;
-    font-size: 1.5rem; 
-    opacity: .9;
+    /* font-size: 1.5rem;  */
+    opacity: .8;
     border-radius: 10px;
     background-color: #EEEEEE;
 }  
+
+.task:hover{
+    opacity: 1;
+    border-bottom: 1px solid;
+}
 
 .task.completed{
     /* background-color: red; */
     text-decoration: line-through; 
     opacity: .4; 
+} 
+
+.task__info-container{
+    display: flex;
+    align-items: center;
+    justify-content:space-between ;
+    font-size: 1.5rem; 
 }
 
 .task__date{
@@ -80,4 +98,12 @@
 .task__checkbox.p4{
     background-color: red;
     /* border-color: red; */
+} 
+
+.task__active-container{
+    display: none;
+} 
+
+.task__active-container.active{
+    display: block;
 }
