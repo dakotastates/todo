@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const data = [
     {
         id: 1,
-        date: '2/23/23' ,
+        date: '2023-03-02T01:14' ,
         task: 'clean room', 
         category: 'personal',
         priority: 'Minor/low', 
@@ -12,7 +12,7 @@ const data = [
     },
     {
         id: 2,
-        date: '2/24/23' ,
+        date: '2023-03-02T01:14' ,
         task:'make dinner',
         category: 'personal',
         priority: 'Major/high', 
@@ -20,7 +20,7 @@ const data = [
     },
     {
         id: 3,
-        date: '2/23/23' ,
+        date: '2023-03-02T01:14' ,
         task: 'order tickets',
         category: 'work', 
         priority: 'Critical/severe', 
@@ -28,7 +28,7 @@ const data = [
     }, 
     {
         id: 4,
-        date: '2/23/23' ,
+        date: '2023-03-02T01:14' ,
         task: 'Buy Groceries',
         category: 'personal', 
         priority: 'Medium/moderate', 
@@ -36,7 +36,7 @@ const data = [
     }, 
     {
         id: 5,
-        date: '2/23/23' ,
+        date: '2023-03-02T01:14' ,
         task: 'Pet a dog',
         category: 'work',
         completed: false
@@ -66,7 +66,10 @@ const slice = createSlice({
       const task = state.tasks.find((task) => task.id === action.payload.id)
   
       if (task) {
+        
         task.task = action.payload.task
+        task.category = action.payload.category
+        task.date = action.payload.date
       }
     },
   },

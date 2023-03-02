@@ -8,6 +8,7 @@ const Task = props =>{
     const [taskTitle, setTaskTitle] = useState(props.task.task)
     const [taskCategory, setTaskCategory] = useState(props.task.category)
     const [customCategory, setCustomCategory] = useState(false)
+    const [taskDateTime, setTaskDateTime] = useState(props.task.date)
 
     const refOne = useRef(null)
 
@@ -66,10 +67,14 @@ const Task = props =>{
         
         const taskObj = {
             id: props.task.id, 
-            task: taskTitle
+            date: taskDateTime,
+            task: taskTitle, 
+            category: taskCategory, 
+            priority: props.task.priority, 
+            completed: props.task.completed
         }
-        
-        if(props.task.task !== taskTitle ){
+        // debugger
+        if(props.task !== taskObj ){
             dispatch(updateTask(taskObj)) 
         }
     } 
@@ -77,10 +82,11 @@ const Task = props =>{
     const handleCategoryChange = e =>{
         if(e.target.value == 'custom'){
             // console.log('custom selected')
-            setCustomCategory(!customCategory)
+            setCustomCategory(true)
+            setTaskCategory('')
         } else{
             setTaskCategory(e.target.value) 
-            // setCustomCategory(!customCategory)
+            setCustomCategory(false)
             // console.log('selected', e.target.value)
         }
     } 
@@ -112,7 +118,18 @@ const Task = props =>{
                                 /> 
                             : props.task.task
                             }
-                            <div className='task__date'>{props.task.date}</div>
+                            <div className='task__date'>
+                                {active ?
+                                    <input 
+                                        type='datetime-local' 
+                                        value={taskDateTime}
+                                        onChange={e=>setTaskDateTime(e.target.value)} 
+                                        onBlur={handleSubmit}
+                                    />
+                                    :
+                                    props.task.date
+                                }
+                            </div>
                         </div>
                     </div>
                 
@@ -120,11 +137,12 @@ const Task = props =>{
                     {active ? 
                         <div>
                             <select 
-                                defaultValue={taskCategory}
+                                defaultValue={customCategory ? 'custom' : taskCategory}
                                 onChange={handleCategoryChange}
                                 className='task__category-select'
+                                onBlur={handleSubmit}
                             >
-                                <option>Category</option>
+                                <option value=''>Category</option>
                                 <option value='personal'>Personal</option>
                                 <option value='work'>Work</option>
                                 <option value='custom'>Custom</option>
@@ -133,13 +151,14 @@ const Task = props =>{
                                 <input 
                                     type='text' 
                                     placeholder='Custom Category' 
-                                    value={taskCategory} 
+                                    // value={taskCategory} 
                                     onChange={e=>setTaskCategory(e.target.value)}
+                                    onBlur={handleSubmit}
                                 />
                             
                             </div>
                         </div>
-                        : taskCategory
+                        : props.task.category
                     }
                 </div>
                 </div>
