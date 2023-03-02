@@ -2,6 +2,7 @@ import {useState, useRef, useEffect} from 'react'
 import { Check, Trash } from 'react-bootstrap-icons';
 import {completeTask, updateTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
+import moment from 'moment';
 
 const Task = props =>{ 
     const [active, setActive] = useState(false)  
@@ -9,6 +10,9 @@ const Task = props =>{
     const [taskCategory, setTaskCategory] = useState(props.task.category)
     const [customCategory, setCustomCategory] = useState(false)
     const [taskDateTime, setTaskDateTime] = useState(props.task.date)
+    const [toggleDateTime, setToggleDateTime] = useState(false)
+    // const [toggleTaskDetails, setToggleTaskDetails] = useState(false)
+    const [taskDetails, setTaskDetails] = useState(props.task.details)
 
     const refOne = useRef(null)
 
@@ -55,6 +59,8 @@ const Task = props =>{
     const handleClickOutside = e => {
         if(!refOne.current.contains(e.target)) {
             setActive(false)
+            // setToggleTaskDetails(false)
+            setToggleDateTime(false)
         } else {
             // console.log('clicked inside')
             setActive(true)
@@ -63,7 +69,8 @@ const Task = props =>{
     } 
 
     const handleSubmit = e =>{
-        e.preventDefault()
+        e.preventDefault() 
+        setToggleDateTime(false)
         
         const taskObj = {
             id: props.task.id, 
@@ -71,7 +78,8 @@ const Task = props =>{
             task: taskTitle, 
             category: taskCategory, 
             priority: props.task.priority, 
-            completed: props.task.completed
+            completed: props.task.completed, 
+            details: taskDetails
         }
         // debugger
         if(props.task !== taskObj ){
@@ -117,65 +125,98 @@ const Task = props =>{
                                     onBlur={handleSubmit}
                                 /> 
                             : props.task.task
-                            }
-                            <div className='task__date'>
+                            }  
+
+                        <div className='task__details'>
                                 {active ?
                                     <input 
-                                        type='datetime-local' 
-                                        value={taskDateTime}
-                                        onChange={e=>setTaskDateTime(e.target.value)} 
+                                        type='text' 
+                                        value={taskDetails}
+                                        placeholder='Details'
+                                        onChange={e=>setTaskDetails(e.target.value)} 
                                         onBlur={handleSubmit}
                                     />
                                     :
-                                    props.task.date
+                                    props.task.details
                                 }
-                            </div>
+                        </div>
+
+                        <div className='task__date'>
+                                {active ?
+                                    <div>
+                                        {toggleDateTime ?                                         <input 
+                                            type='datetime-local' 
+                                            value={taskDateTime}
+                                            onChange={e=>setTaskDateTime(e.target.value)} 
+                                            onBlur={handleSubmit}
+                                        /> : <div onClick={()=>setToggleDateTime(true)}>
+                                                 {props.task.date ? moment(props.task.date ).calendar() : 'Date/Time'}
+                                             </div>
+                                        }
+
+                                    </div>
+                                    :
+                                    props.task.date ? moment(props.task.date ).calendar() : null
+                                }
+                         </div>
+                            
                         </div>
                     </div>
                 
-                <div className='task__category'>
-                    {active ? 
-                        <div>
-                            <select 
-                                defaultValue={customCategory ? 'custom' : taskCategory}
-                                onChange={handleCategoryChange}
-                                className='task__category-select'
-                                onBlur={handleSubmit}
-                            >
-                                <option value=''>Category</option>
-                                <option value='personal'>Personal</option>
-                                <option value='work'>Work</option>
-                                <option value='custom'>Custom</option>
-                            </select>
-                            <div className={categoryCustomClasses}>
-                                <input 
-                                    type='text' 
-                                    placeholder='Custom Category' 
-                                    // value={taskCategory} 
-                                    onChange={e=>setTaskCategory(e.target.value)}
+                    <div className='task__category'>
+                        {active ? 
+                            <div>
+                                <select 
+                                    defaultValue={customCategory ? 'custom' : taskCategory}
+                                    onChange={handleCategoryChange}
+                                    className='task__category-select'
                                     onBlur={handleSubmit}
-                                />
-                            
+                                >
+                                    <option value=''>Category</option>
+                                    <option value='personal'>Personal</option>
+                                    <option value='work'>Work</option>
+                                    <option value='custom'>Custom</option>
+                                </select>
+                                <div className={categoryCustomClasses}>
+                                    <input 
+                                        type='text' 
+                                        placeholder='Custom Category' 
+                                        // value={taskCategory} 
+                                        onChange={e=>setTaskCategory(e.target.value)}
+                                        onBlur={handleSubmit}
+                                    />
+                                
+                                </div>
                             </div>
-                        </div>
-                        : props.task.category
-                    }
-                </div>
+                            : props.task.category
+                        }
+                    </div>
+                    
+
+
                 </div>
             </div>
-            <div className={activeTaskClasses}>Active Container</div>
+            <div className={activeTaskClasses}>
+
+                'active'
+            </div>
         </div>
     )
 }
 export default Task
 
 
-{/* <div className='task__info'>
-                    {props.task.completed ? <Check onClick={handleCompleted} /> : <div onClick={handleCompleted} className={taskCheckboxClasses} />}
-                    <div className='task__todo'>
-                        {props.task.task}
-                        <div className='task__date'>{props.task.date}</div>
-                    </div>
-                </div>
-                
-                <div className='task__category'>{props.task.category}</div> */}
+
+
+{/* <div onClick={()=>setToggleDateTime(!toggleDateTime)} className='task__date'>
+{toggleDateTime ?
+    <input 
+        type='datetime-local' 
+        value={taskDateTime}
+        onChange={e=>setTaskDateTime(e.target.value)} 
+        onBlur={handleSubmit}
+     />
+     :
+    props.task.date
+}
+</div> */}

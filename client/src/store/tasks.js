@@ -7,7 +7,8 @@ const data = [
         task: 'clean room', 
         category: 'personal',
         priority: 'Minor/low', 
-        completed: false
+        completed: false, 
+        details: 'Here are some details'
 
     },
     {
@@ -16,7 +17,8 @@ const data = [
         task:'make dinner',
         category: 'personal',
         priority: 'Major/high', 
-        completed: false
+        completed: false, 
+        details: 'Here sfdsfsd are some details'
     },
     {
         id: 3,
@@ -24,7 +26,8 @@ const data = [
         task: 'order tickets',
         category: 'work', 
         priority: 'Critical/severe', 
-        completed: false
+        completed: false, 
+        details: 'Here are sfsdfsdf some details'
     }, 
     {
         id: 4,
@@ -32,14 +35,24 @@ const data = [
         task: 'Buy Groceries',
         category: 'personal', 
         priority: 'Medium/moderate', 
-        completed: false
+        completed: false, 
+        details: 'sdsfs  Here are some details'
     }, 
     {
         id: 5,
         date: '2023-03-02T01:14' ,
         task: 'Pet a dog',
         category: 'work',
-        completed: false
+        completed: false, 
+        details: 'Here are some details sdfsdfsdfsf'
+    }, 
+    {
+        id: 6,
+        date: '' ,
+        task: '',
+        category: '',
+        completed: false, 
+        details: ''
     }
 ]
 
@@ -70,6 +83,7 @@ const slice = createSlice({
         task.task = action.payload.task
         task.category = action.payload.category
         task.date = action.payload.date
+        task.details = action.payload.details
       }
     },
   },
