@@ -62,12 +62,19 @@ const slice = createSlice({
         task.completed = !task.completed
       }
     },
+    updateTaskSuccess: (state, action) =>  {
+      const task = state.tasks.find((task) => task.id === action.payload.id)
+  
+      if (task) {
+        task.task = action.payload.task
+      }
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess } = slice.actions
 export const createTask = (task) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/login/', { username, password })
@@ -89,6 +96,15 @@ export const completeTask = (id) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
     return dispatch(completeTaskSuccess(id))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}
+
+export const updateTask = (data) => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(updateTaskSuccess(data))
   } catch (e) {
     return console.error(e.message);
   }
