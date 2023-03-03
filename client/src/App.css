@@ -22,6 +22,7 @@
   margin: 10px;
   border-radius: 5px;
   padding: 10px; 
+  overflow: auto;
  } 
 
  .right-drawer-toggle__button{

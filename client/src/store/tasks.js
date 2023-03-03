@@ -86,12 +86,17 @@ const slice = createSlice({
         task.details = action.payload.details
       }
     },
+    deleteTaskSuccess: (state, action) =>  {
+      const tasks = state.tasks.filter((task) => task.id !== action.payload)
+  
+      state.tasks = tasks
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess } = slice.actions
 export const createTask = (task) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/login/', { username, password })
@@ -122,6 +127,15 @@ export const updateTask = (data) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
     return dispatch(updateTaskSuccess(data))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}
+
+export const deleteTask = (data) => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(deleteTaskSuccess(data))
   } catch (e) {
     return console.error(e.message);
   }
