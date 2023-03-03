@@ -8,7 +8,11 @@ const data = [
         category: 'personal',
         priority: 'Minor/low', 
         completed: false, 
-        details: 'Here are some details'
+        details: 'Here are some details',
+        onCalendar: false,
+        favorited: false,
+        repeat: false,
+        associates: []
 
     },
     {
@@ -18,7 +22,11 @@ const data = [
         category: 'personal',
         priority: 'Major/high', 
         completed: false, 
-        details: 'Here sfdsfsd are some details'
+        details: 'Here sfdsfsd are some details',
+        onCalendar: false,
+        favorited: false,
+        repeat: false,
+        associates: []
     },
     {
         id: 3,
@@ -27,7 +35,11 @@ const data = [
         category: 'work', 
         priority: 'Critical/severe', 
         completed: false, 
-        details: 'Here are sfsdfsdf some details'
+        details: 'Here are sfsdfsdf some details',
+        onCalendar: false,
+        favorited: false,
+        repeat: false,
+        associates: []
     }, 
     {
         id: 4,
@@ -36,7 +48,11 @@ const data = [
         category: 'personal', 
         priority: 'Medium/moderate', 
         completed: false, 
-        details: 'sdsfs  Here are some details'
+        details: 'sdsfs  Here are some details',
+        onCalendar: false,
+        favorited: false,
+        repeat: false,
+        associates: []
     }, 
     {
         id: 5,
@@ -44,7 +60,22 @@ const data = [
         task: 'Pet a dog',
         category: 'work',
         completed: false, 
-        details: 'Here are some details sdfsdfsdfsf'
+        details: 'Here are some details sdfsdfsdfsf', 
+        onCalendar: false,
+        favorited: false,
+        repeat: false,
+        associates: [
+          {
+            id: 1,
+            name: 'guest 1', 
+            email: 'guest1@test.com'
+          }, 
+          {
+            id: 2, 
+            name: 'guest 2', 
+            email: 'guest2@test.com'
+          }
+      ]
     }, 
     {
         id: 6,
@@ -52,7 +83,11 @@ const data = [
         task: '',
         category: '',
         completed: false, 
-        details: ''
+        details: '',
+        onCalendar: false,
+        favorited: false,
+        repeat: false,
+        associates: []
     }
 ]
 
@@ -64,7 +99,7 @@ const slice = createSlice({
   },
   reducers: {
     createTaskSuccess: (state, action) => {
-      state.tasks = state.tasks.push(action.payload);
+      state.tasks = [...state.tasks, action.payload]
     },
     getTasksSuccess: (state, action) =>  {
       state.tasks = action.payload
@@ -91,12 +126,16 @@ const slice = createSlice({
   
       state.tasks = tasks
     },
+    rearrangeTasksSuccess: (state, action) =>  {
+      state.tasks = action.payload
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess } = slice.actions
+
 export const createTask = (task) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/login/', { username, password })
@@ -136,6 +175,15 @@ export const deleteTask = (data) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
     return dispatch(deleteTaskSuccess(data))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}
+
+export const rearrangeTasks = (data) => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(rearrangeTasksSuccess(data))
   } catch (e) {
     return console.error(e.message);
   }

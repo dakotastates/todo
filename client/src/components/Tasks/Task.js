@@ -115,17 +115,17 @@ const Task = props =>{
     } 
 
     const handleDeleteTask = e =>{
-        debugger
-        // e.preventDefault()
-        // e.stopPropagation();
-        console.log('delete')
-        // dispatch(deleteTask(props.task.id)) 
+        dispatch(deleteTask(props.task.id)) 
     }
 
 
 
     return(
-        <div ref={refOne} onClick={handleActiveTask} className={taskClasses}>
+        <div 
+            ref={refOne} 
+            onClick={handleActiveTask} 
+            className={taskClasses} 
+        >
             
             <div className='task__container'>
                 
