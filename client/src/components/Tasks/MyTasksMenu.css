@@ -1,0 +1,19 @@
+.my__tasks-container{
+    position: relative;
+}
+
+.my__tasks-button{
+
+}
+
+.my__tasks-dropdown{
+    /* display: none; */
+    width: 150px;
+    height: 160px;
+    background-color: #DADADA;
+    border: 1px solid;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 2;
+    box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
+}

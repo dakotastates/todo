@@ -11,19 +11,10 @@ const Task = props =>{
     const [customCategory, setCustomCategory] = useState(false)
     const [taskDateTime, setTaskDateTime] = useState(props.task.date)
     const [toggleDateTime, setToggleDateTime] = useState(false)
-    // const [toggleTaskDetails, setToggleTaskDetails] = useState(false)
     const [taskDetails, setTaskDetails] = useState(props.task.details)
-    // const [showOptions, setShowOptions] = useState(false)
-
     const refOne = useRef(null)
 
     const dispatch = useDispatch() 
-
-    // let taskOptionsClasses = 'task__options'
-
-    // if(showOptions){
-    //     taskOptionsClasses = 'task__options show'
-    // }
 
     let taskClasses = 'task'  
 
@@ -64,16 +55,10 @@ const Task = props =>{
     },[])
     
     const handleClickOutside = e => {
-        if(!refOne.current.contains(e.target)) {
+        if(!refOne.current?.contains(e.target)) {
             setActive(false)
-            // setToggleTaskDetails(false)
-            // setToggleDateTime(false)
-            // console.log('Outside')
-        } else {
-            // console.log('clicked inside')
-            // setActive(true)
-            // console.log('Inside')
-        }
+            setToggleDateTime(false)
+        } 
 
     } 
 
@@ -90,7 +75,7 @@ const Task = props =>{
             completed: props.task.completed, 
             details: taskDetails
         }
-        // debugger
+
         if(props.task !== taskObj ){
             dispatch(updateTask(taskObj)) 
         }
@@ -98,13 +83,11 @@ const Task = props =>{
 
     const handleCategoryChange = e =>{
         if(e.target.value == 'custom'){
-            // console.log('custom selected')
             setCustomCategory(true)
             setTaskCategory('')
         } else{
             setTaskCategory(e.target.value) 
             setCustomCategory(false)
-            // console.log('selected', e.target.value)
         }
     } 
 
@@ -121,11 +104,7 @@ const Task = props =>{
 
 
     return(
-        <div 
-            ref={refOne} 
-            onClick={handleActiveTask} 
-            className={taskClasses} 
-        >
+        <div ref={refOne} onClick={handleActiveTask} className={taskClasses} >
             
             <div className='task__container'>
                 

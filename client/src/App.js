@@ -9,15 +9,18 @@ import HomePage from "./pages/HomePage";
 import CalendarPage from './pages/CalendarPage'
 import TasksPage from "./pages/TasksPage";
 import NotFound from "./pages/NotFound";
+import AuthPage from "./pages/AuthPage";
+import { useSelector} from 'react-redux'
 
 import "./App.css";
 
 
 function App() {  
-
   const [drawerToggle, setDrawerToggle] = useState(true)
   const [rightDrawerToggle, setRightDrawerToggle] = useState(false) 
 
+  const { user } = useSelector(state => state.user)
+  
 
   const drawerToggleClickHandler = () =>{
     setDrawerToggle(!drawerToggle)
@@ -46,10 +49,12 @@ function App() {
 
 
   return (
+    <>
     <Router>
-      <div style={{height: '100%'}}>
+    {user ? 
+      <div className='App'>
         <Toolbar drawerToggleClickHandler = {drawerToggleClickHandler}/>
-        
+
         <div className={mainContainerClasses}>
         <SideDrawer show={drawerToggle} />
         <div className='main-content'> 
@@ -64,7 +69,16 @@ function App() {
           <RightSideDrawer show={rightDrawerToggle} />
         </div> 
       </div>
+      : 
+      <div className='app__auth-page'>
+        <Routes>
+          <Route path='/' element={<><AuthPage /></>} />
+          <Route path="*" element={<><NotFound/></>}/>
+        </Routes>
+      </div>
+    }
     </Router>
+    </>
   );
 }
 

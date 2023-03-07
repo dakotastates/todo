@@ -5,6 +5,7 @@
     height: 56px;
     top: 0;
     left: 0;
+    z-index: 100;
 } 
 
 .toolbar__navigation {
@@ -46,6 +47,30 @@
     color: white; 
     text-decoration: none;
 } 
+
+.toolbar__menu-container{
+    position: relative;
+    color: black;
+}
+
+.toolbar__menu{
+    position: absolute;
+    min-width: 200px;
+    height: 200px;
+    right: 0;
+    background-color: #f9f9f9;
+    border: 1px solid;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* .dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  } */
 
 /* @media (max-width: 768px){
     .toolbar__navigation-items{
