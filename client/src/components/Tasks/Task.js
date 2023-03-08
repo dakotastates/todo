@@ -3,6 +3,8 @@ import { Check, Trash, Star, ThreeDotsVertical } from 'react-bootstrap-icons';
 import {completeTask, updateTask, deleteTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 const Task = props =>{ 
     const [active, setActive] = useState(false)  
@@ -13,6 +15,9 @@ const Task = props =>{
     const [toggleDateTime, setToggleDateTime] = useState(false)
     const [taskDetails, setTaskDetails] = useState(props.task.details)
     const refOne = useRef(null)
+    const params = useParams();
+    const navigate = useNavigate();
+    
 
     const dispatch = useDispatch() 
 
@@ -48,10 +53,18 @@ const Task = props =>{
 
     const handleActiveTask = () =>{
         props.setActiveTask(props.task.id) 
+        navigate(`/tasks/${props.task.id}`)
     }   
 
     useEffect(()=>{
         document.addEventListener('click', handleClickOutside, true)
+    },[]) 
+
+    useEffect(()=>{
+        if(params?.id == props.task.id){
+            props.setActiveTask(props.task.id)
+            setActive(true)
+        }
     },[])
     
     const handleClickOutside = e => {

@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import Task from "./Task";
 import './Tasks.css'
 import {useDispatch, useSelector} from 'react-redux'
@@ -13,7 +13,7 @@ const Tasks = props =>{
     const [activeTask, setActiveTask] = useState(null) 
     const dispatch = useDispatch() 
     const dragItem = useRef();
-    const dragOverItem = useRef();
+    const dragOverItem = useRef(); 
     
 
     let content

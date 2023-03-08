@@ -1,7 +1,25 @@
+import { useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
 
-const ProfileDropdown = ()=>{
+import {logout} from '../../store/user'
+
+const ProfileDropdown = ()=>{ 
+
+    // const { user } = useSelector(state => state.user)
+    const dispatch = useDispatch() 
+    const navigate = useNavigate();
+
+    const handleLogout = ()=>{
+        dispatch(logout())
+        navigate("/")
+    }
+
     return(
-        <div>Profile Dropdown</div>
+        <div>
+            <ul>
+                <li onClick={handleLogout}>Logout</li>
+            </ul>
+        </div>
     )
 }
 export default ProfileDropdown

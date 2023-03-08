@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage";
 import CalendarPage from './pages/CalendarPage'
 import TasksPage from "./pages/TasksPage";
 import NotFound from "./pages/NotFound";
+import ContactsPage from "./pages/ContactsPage";
 import AuthPage from "./pages/AuthPage";
 import { useSelector} from 'react-redux'
 
@@ -59,8 +60,10 @@ function App() {
         <SideDrawer show={drawerToggle} />
         <div className='main-content'> 
           <Routes>
+            <Route path='/tasks/:id' element={<><TasksPage /></>} />
             <Route path='/tasks' element={<><TasksPage /></>} />
             <Route path='/calendar' element={<><CalendarPage/></>} />
+            <Route path='/contacts' element={<><ContactsPage/></>} />
             <Route path='/' element={<><HomePage/></>} />
             <Route path="*" element={<><NotFound/></>}/>
           </Routes>
