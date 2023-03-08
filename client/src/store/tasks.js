@@ -119,6 +119,7 @@ const slice = createSlice({
         task.category = action.payload.category
         task.date = action.payload.date
         task.details = action.payload.details
+        task.priority = action.payload.priority
       }
     },
     deleteTaskSuccess: (state, action) =>  {

@@ -1,5 +1,5 @@
 import {useState, useRef, useEffect} from 'react'
-import { Check, Trash, Star, ThreeDotsVertical } from 'react-bootstrap-icons';
+import { Check, Trash, Star, ThreeDotsVertical, NutFill } from 'react-bootstrap-icons';
 import {completeTask, updateTask, deleteTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
@@ -14,6 +14,7 @@ const Task = props =>{
     const [taskDateTime, setTaskDateTime] = useState(props.task.date)
     const [toggleDateTime, setToggleDateTime] = useState(false)
     const [taskDetails, setTaskDetails] = useState(props.task.details)
+    const [taskPriority, setTaskPriority] = useState(props.task.priority)
     const refOne = useRef(null)
     const params = useParams();
     const navigate = useNavigate();
@@ -48,7 +49,9 @@ const Task = props =>{
     } 
 
     const handleCompleted = () =>{ 
-        dispatch(completeTask(props.task.id)) 
+        dispatch(completeTask(props.task.id)).then(()=>{
+            navigate('/tasks')
+        }) 
     } 
 
     const handleActiveTask = () =>{
@@ -65,12 +68,13 @@ const Task = props =>{
             props.setActiveTask(props.task.id)
             setActive(true)
         }
-    },[])
+    },[params])
     
     const handleClickOutside = e => {
         if(!refOne.current?.contains(e.target)) {
             setActive(false)
             setToggleDateTime(false)
+            navigate('/tasks')
         } 
 
     } 
@@ -84,7 +88,7 @@ const Task = props =>{
             date: taskDateTime,
             task: taskTitle, 
             category: taskCategory, 
-            priority: props.task.priority, 
+            priority: taskPriority, 
             completed: props.task.completed, 
             details: taskDetails
         }
@@ -207,6 +211,28 @@ const Task = props =>{
                             </div>
                             :   <div className='task__right-container'>
                                     <div>{props.task.category}</div>
+                                </div>
+                        }
+                        </div>
+                        <div>
+                        {active ? 
+                            <div className='task__right-container'>
+                                <select 
+                                    defaultValue={taskPriority}
+                                    onChange={e=>setTaskPriority(e.target.value) }
+                                    className='task__category-select'
+                                    onBlur={handleSubmit}
+                                >
+                                    <option value=''>Priority</option>
+                                    <option value='Minor/low'>Minor/low</option>
+                                    <option value='Medium/moderate'>Medium/moderate</option>
+                                    <option value='Major/high'>Major/high</option>
+                                    <option value='Critical/severe'>Critical/severe</option>
+                                </select>
+
+                            </div>
+                            :   <div className='task__right-container'>
+                                    <div>{props.task.priority}</div>
                                 </div>
                         }
                         </div>
