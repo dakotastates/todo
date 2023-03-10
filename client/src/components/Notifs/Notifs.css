@@ -1,0 +1,7 @@
+.notifs__create-button{
+    border: 1px solid;
+}
+
+.notifs__create-button:hover{
+    background-color: grey;
+}

@@ -4,7 +4,7 @@ const data = [
     {
         id: 1,
         date: '2023-03-02T01:14' ,
-        task: 'clean room', 
+        task: 'clean room 2', 
         category: 'personal',
         priority: 'Minor/low', 
         completed: false, 
@@ -12,8 +12,19 @@ const data = [
         onCalendar: false,
         favorited: false,
         repeat: false,
-        associates: []
-
+        associates: [], 
+        notifs: [
+          {
+            id: 1,
+            type: 'alert', 
+            notif: '15 minutes before'
+          },
+          {
+            id: 2,
+            type: 'alert', 
+            notif: '30 minutes before'
+          }
+        ]
     },
     {
         id: 2,
@@ -26,7 +37,19 @@ const data = [
         onCalendar: false,
         favorited: false,
         repeat: false,
-        associates: []
+        associates: [], 
+        notifs: [
+          {
+            id: 1,
+            type: 'alert', 
+            notif: '15 minutes before'
+          },
+          {
+            id: 2,
+            type: 'alert', 
+            notif: '30 minutes before'
+          }
+        ]
     },
     {
         id: 3,
@@ -39,7 +62,19 @@ const data = [
         onCalendar: false,
         favorited: false,
         repeat: false,
-        associates: []
+        associates: [],
+        notifs: [
+          {
+            id: 1,
+            type: 'alert', 
+            notif: '15 minutes before'
+          },
+          {
+            id: 2,
+            type: 'alert', 
+            notif: '30 minutes before'
+          }
+        ]
     }, 
     {
         id: 4,
@@ -52,7 +87,19 @@ const data = [
         onCalendar: false,
         favorited: false,
         repeat: false,
-        associates: []
+        associates: [], 
+        notifs: [
+          {
+            id: 1,
+            type: 'alert', 
+            notif: '15 minutes before'
+          },
+          {
+            id: 2,
+            type: 'alert', 
+            notif: '30 minutes before'
+          }
+        ]
     }, 
     {
         id: 5,
@@ -75,6 +122,18 @@ const data = [
             name: 'guest 2', 
             email: 'guest2@test.com'
           }
+      ], 
+      notifs: [
+        {
+          id: 1,
+          type: 'alert', 
+          notif: '15 minutes before'
+        },
+        {
+          id: 2,
+          type: 'alert', 
+          notif: '30 minutes before'
+        }
       ]
     }, 
     {
@@ -87,7 +146,8 @@ const data = [
         onCalendar: false,
         favorited: false,
         repeat: false,
-        associates: []
+        associates: [], 
+        notifs: []
     }
 ]
 
@@ -130,12 +190,27 @@ const slice = createSlice({
     rearrangeTasksSuccess: (state, action) =>  {
       state.tasks = action.payload
     },
+    createTaskNotifSuccess: (state, action) =>  {
+      const task = state.tasks.find((task) => task.id === action.payload.taskId)
+      if (task){
+        task.notifs = [...task.notifs, action.payload]
+      }
+    },
+    updateTaskNotifSuccess: (state, action) =>  {
+      const task = state.tasks.find((task) => task.id === action.payload.taskId)
+      if (task){
+        const notif = task.notifs.find((notif)=> notif.id === action.payload.id)
+        if (notif){
+          notif.notif = action.payload.notif
+        }
+      }
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess } = slice.actions
 
 export const createTask = (task) => async dispatch => {
   try {
@@ -185,6 +260,24 @@ export const rearrangeTasks = (data) => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
     return dispatch(rearrangeTasksSuccess(data))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}
+
+export const createTaskNotif = (data) => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(createTaskNotifSuccess(data))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}
+
+export const updateTaskNotif = (data) => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(updateTaskNotifSuccess(data))
   } catch (e) {
     return console.error(e.message);
   }

@@ -4,6 +4,7 @@ import {completeTask, updateTask, deleteTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
 import { useParams, useNavigate } from 'react-router-dom';
+import Notifs from '../Notifs/Notifs'
 
 
 const Task = props =>{ 
@@ -241,7 +242,7 @@ const Task = props =>{
                 </div>
             </div>
             <div className={activeTaskClasses}>
-            <div className='task__priority'>{props.task.priority}</div>
+                <Notifs task={props.task} />
             </div>
         </div>
     )

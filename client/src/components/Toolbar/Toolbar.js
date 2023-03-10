@@ -1,7 +1,9 @@
-import {useState} from "react"; 
+import {useState, useEffect} from "react"; 
 import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
 import { Plus, Bell, Person, House } from 'react-bootstrap-icons';
 import ToolbarDropdown from "./ToolbarDropdown";
+import {useDispatch, useSelector} from 'react-redux'
+import {getNotifs} from '../../store/notifs'
 // import { Link } from 'react-router-dom';
 
 
@@ -11,10 +13,17 @@ const Toolbar = props =>{
     const [toggleDropdownMenu, setToggleDropdownMenu] = useState(false)
     const [selectedDropdownMenu, setSelectedDropdownMenu] = useState(null)
 
+    const dispatch = useDispatch()
+    // const { notifs } = useSelector(state => state.notifs) 
+
     const handleToggleDropdownMenu = target=>{
         setSelectedDropdownMenu(target)
         setToggleDropdownMenu(!toggleDropdownMenu)
     }
+
+    useEffect(()=>{
+        dispatch(getNotifs()) 
+    },[])
 
     return (
         <header className='toolbar'>
