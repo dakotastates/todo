@@ -10,8 +10,10 @@ const ProfileDropdown = ()=>{
     const navigate = useNavigate();
 
     const handleLogout = ()=>{
-        dispatch(logout())
-        navigate("/")
+        dispatch(logout()).then(()=>{
+            navigate("/")
+        })
+        
     }
 
     return(

@@ -78,10 +78,26 @@ export const updateUser = (data) => async dispatch => {
   }
 }  
 
-export const login = ({ username, password }) => async dispatch => {
+export const login = (user) => async dispatch => {
+  const configObj ={
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: "application/json",
+    },
+    body: JSON.stringify({user}),
+  } 
+
     try {
       // const res = await api.post('/api/auth/login/', { username, password })
-      dispatch(loginSuccess({username}));
+      const res = await fetch("http://localhost:3000/api/v1/login", configObj);
+      const json = await res.json(); 
+      
+      if (json.message){
+        throw new Error(json.message)
+      }
+      localStorage.setItem("token", json.jwt);
+      dispatch(loginSuccess(json.user));
     } catch (e) {
       return console.error(e.message);
     }

@@ -4,7 +4,7 @@ import {login} from '../../store/user'
 
 const Login = props =>{
     const [error, setError] = useState(null)
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch() 
@@ -12,7 +12,7 @@ const Login = props =>{
     const handleSubmit = e =>{
         e.preventDefault()
         const authObj = {
-            username: username, 
+            email: email, 
             password: password
         }
         // console.log('AuthUser:', authObj)
@@ -27,9 +27,9 @@ const Login = props =>{
                     <div className='auth__form-field'>
                         <input 
                             type='text' 
-                            placeholder="Username"
-                            value={username}
-                            onChange={e=>setUsername(e.target.value)}
+                            placeholder="Email"
+                            value={email}
+                            onChange={e=>setEmail(e.target.value)}
                         />
                     </div>
                     <div className='auth__form-field'>
@@ -43,7 +43,7 @@ const Login = props =>{
                     </div>
 
                     <div className='auth__form-field-button'>
-                        <button className='auth__submit-button' disabled={!username || !password} onClick={handleSubmit}>Login</button>
+                        <button className='auth__submit-button' disabled={!email || !password} onClick={handleSubmit}>Login</button>
                     </div>
                     <div className='auth__form-field'>
                         Need an Account? <div className='auth__toggle-button' onClick={props.toggleAuth}>Register Here</div>
