@@ -9,10 +9,10 @@ import Notifs from '../Notifs/Notifs'
 
 const Task = props =>{ 
     const [active, setActive] = useState(false)  
-    const [taskTitle, setTaskTitle] = useState(props.task.task)
+    const [taskTitle, setTaskTitle] = useState(props.task.title)
     const [taskCategory, setTaskCategory] = useState(props.task.category)
     const [customCategory, setCustomCategory] = useState(false)
-    const [taskDateTime, setTaskDateTime] = useState(props.task.date)
+    const [taskDateTime, setTaskDateTime] = useState(props.task.alert_datetime)
     const [toggleDateTime, setToggleDateTime] = useState(false)
     const [taskDetails, setTaskDetails] = useState(props.task.details)
     const [taskPriority, setTaskPriority] = useState(props.task.priority)
@@ -85,13 +85,14 @@ const Task = props =>{
         setToggleDateTime(false)
         
         const taskObj = {
-            id: props.task.id, 
-            date: taskDateTime,
-            task: taskTitle, 
+            id: props.task.id,
+            alert_datetime: taskDateTime,
+            title: taskTitle, 
             category: taskCategory, 
             priority: taskPriority, 
             completed: props.task.completed, 
-            details: taskDetails
+            details: taskDetails, 
+            user_id: props.task.user_id,
         }
 
         if(props.task !== taskObj ){
@@ -140,7 +141,7 @@ const Task = props =>{
                                     onChange={e=>setTaskTitle(e.target.value)}
                                     onBlur={handleSubmit}
                                 /> 
-                                : props.task.task
+                                : props.task.title
                             }  
                         </div>
                         <div>
@@ -242,9 +243,12 @@ const Task = props =>{
                 </div>
             </div>
             <div className={activeTaskClasses}>
-                <Notifs task={props.task} />
+                Active
             </div>
         </div>
     )
 }
 export default Task
+
+
+{/* <Notifs task={props.task} /> */}

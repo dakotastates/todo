@@ -149,7 +149,24 @@ const data = [
         associates: [], 
         notifs: []
     }
-]
+] 
+
+
+// const _taskObject = (state) => ({
+//   task: {
+//     id: state.id,
+//     username: state.username,
+//     password: state.password,
+//     firstName: state.firstName,
+//     lastName: state.lastName,
+//     bio: state.bio,
+//     avatar: state.avatar,
+//     // admin_level: state.adminLevel
+
+
+//   },
+
+// });
 
 // Slice
 const slice = createSlice({
@@ -159,7 +176,7 @@ const slice = createSlice({
   },
   reducers: {
     createTaskSuccess: (state, action) => {
-      state.tasks = [...state.tasks, action.payload]
+      state.tasks = [...state.tasks, action.payload.user]
     },
     getTasksSuccess: (state, action) =>  {
       state.tasks = action.payload
@@ -175,9 +192,9 @@ const slice = createSlice({
   
       if (task) {
         
-        task.task = action.payload.task
+        task.title = action.payload.title
         task.category = action.payload.category
-        task.date = action.payload.date
+        task.alert_datetime = action.payload.alert_datetime
         task.details = action.payload.details
         task.priority = action.payload.priority
       }
@@ -213,17 +230,48 @@ export default slice.reducer
 const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess } = slice.actions
 
 export const createTask = (task) => async dispatch => {
+  const configObj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+    body: JSON.stringify({task}),
+  };
+
   try {
-    // const res = await api.post('/api/auth/login/', { username, password })
-    dispatch(createTaskSuccess(task));
+    const res = await fetch("http://localhost:3000/api/v1/tasks", configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+      // debugger
+      throw new Error(json.error + " " + json.message);
+    }
+
+    dispatch(createTaskSuccess(json));
   } catch (e) {
     return console.error(e.message);
   }
 }
-export const getTasks = () => async dispatch => {
+export const getTasks = () => async dispatch => { 
+
+  const configObj = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  };
+
   try {
-    // const res = await api.post('/api/auth/logout/')
-    return dispatch(getTasksSuccess(data))
+    const res = await fetch("http://localhost:3000/api/v1/tasks", configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+      // debugger
+      throw new Error(json.error + " " + json.message);
+    }
+    return dispatch(getTasksSuccess(json))
   } catch (e) {
     return console.error(e.message);
   }
@@ -238,19 +286,48 @@ export const completeTask = (id) => async dispatch => {
   }
 }
 
-export const updateTask = (data) => async dispatch => {
+export const updateTask = (task) => async dispatch => { 
+  
+  const configObj = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+    body: JSON.stringify({task}),
+  };
+
   try {
-    // const res = await api.post('/api/auth/logout/')
-    return dispatch(updateTaskSuccess(data))
+    const res = await fetch(`http://localhost:3000/api/v1/tasks/${task.id}`, configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+      
+      throw new Error(json.error + " " + json.message);
+    }
+    return dispatch(updateTaskSuccess(json))
   } catch (e) {
     return console.error(e.message);
   }
 }
 
-export const deleteTask = (data) => async dispatch => {
+export const deleteTask = (id) => async dispatch => {
+
+  const configObj = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  };
   try {
-    // const res = await api.post('/api/auth/logout/')
-    return dispatch(deleteTaskSuccess(data))
+
+    const res = await fetch(`http://localhost:3000/api/v1/tasks/${id}`, configObj);
+    const json = await res.json();
+    
+    return dispatch(deleteTaskSuccess(json.task.id))
   } catch (e) {
     return console.error(e.message);
   }
@@ -258,7 +335,6 @@ export const deleteTask = (data) => async dispatch => {
 
 export const rearrangeTasks = (data) => async dispatch => {
   try {
-    // const res = await api.post('/api/auth/logout/')
     return dispatch(rearrangeTasksSuccess(data))
   } catch (e) {
     return console.error(e.message);

@@ -10,27 +10,21 @@ const CreateTask = props =>{
     const navigate = useNavigate();
 
     const dataObj = {
-        id: 1,
-        date: '' ,
-        task: '',
+        alert_datetime: '',
+        title: '',
         category: '',
-        completed: false, 
         details: '', 
-        priority: '',
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: []
+        priority: ''
     }
 
-    const handleNewTask = () =>{
+    const handleNewTask = async() =>{
         const unique_id = uuid();
-        // const newObj = {...dataObj}
         const newObj= JSON.parse(JSON.stringify(dataObj))
         newObj.id = unique_id
         dispatch(createTask(newObj)).then(()=>{
-            navigate(`/tasks/${newObj.id}`)
+            // navigate(`/tasks/${newObj.id}`)
         })
+        
         
     }
 

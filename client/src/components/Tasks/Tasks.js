@@ -18,6 +18,7 @@ const Tasks = props =>{
 
     let content
     if (props.tasks){
+        
         const incompletedTasks = props.tasks.filter(task=>!task.completed).reverse() 
 
 

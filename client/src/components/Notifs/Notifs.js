@@ -16,7 +16,7 @@ const Notifs = props =>{
     return(
         <div>
             Task Notifications
-            {props.task.notifs.map((notif, index)=>(
+            {props.task?.notifs.map((notif, index)=>(
                 <Notif key={index} notif={notif} taskId={props.task.id} />
             )
             )}
