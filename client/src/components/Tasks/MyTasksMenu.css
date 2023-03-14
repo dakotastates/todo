@@ -1,19 +1,76 @@
+.mytasks__menu-container{
+  display: flex;
+}
+.spacer{
+    /* background-color: blue; */
+}
+
 .my__tasks-container{
-    position: relative;
+    position: relative; 
+    /* background-color: pink; */
 }
 
 .my__tasks-button{
-
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 5px;
+}
+.my__tasks-button:hover{
+    background-color: white;
 }
 
 .my__tasks-dropdown{
-    /* display: none; */
-    width: 150px;
-    height: 160px;
-    background-color: #DADADA;
+    position: absolute;
+    min-width: 200px;
+    height: 200px;
+    background-color: #f9f9f9;
     border: 1px solid;
     border-radius: 5px;
-    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 2;
-    box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
+    margin-top: 10px;
+} 
+
+.my__tasks-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 5px;
+    justify-content: space-between;
+    height: 100%;
+    /* width: 100%; */
+}
+
+.my__tasks-list-top{
+    width: 100%;
+    
+}
+
+.my__tasks-list-mid{
+    width: 100%;
+}
+
+.my__tasks-list-bottom{
+    width: 100%;
+} 
+
+.my__tasks-list-item{
+    /* background-color: green; */
+    height: 30px;
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.my__tasks-list-item:hover{
+    background-color: grey;
+} 
+
+.my__tasks-list-item-icon{
+    width: 100%;
+}
+
+.my__tasks-list-text{
+    width: 100%;
 }

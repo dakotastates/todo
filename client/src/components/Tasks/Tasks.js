@@ -67,7 +67,10 @@ const Tasks = props =>{
 
     return(
         <div className='tasks-container'>
-            <MyTasksMenu />
+            <div className='mytasks__menu-container'>
+                <MyTasksMenu />
+                <div className='spacer' />
+            </div>
             <div className='tasks__date'>Today</div>
             <CreateTask />
             <div className='tasks__list'>

@@ -14,17 +14,18 @@ const CreateTask = props =>{
         title: '',
         category: '',
         details: '', 
-        priority: ''
+        priority: '', 
+        uuid: ''
     }
 
-    const handleNewTask = async() =>{
+    const handleNewTask = () =>{
         const unique_id = uuid();
+
         const newObj= JSON.parse(JSON.stringify(dataObj))
-        newObj.id = unique_id
+        newObj.uuid = unique_id
         dispatch(createTask(newObj)).then(()=>{
-            // navigate(`/tasks/${newObj.id}`)
+            navigate(`/tasks/${newObj.uuid}`)
         })
-        
         
     }
 

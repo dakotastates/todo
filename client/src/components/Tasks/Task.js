@@ -57,7 +57,7 @@ const Task = props =>{
 
     const handleActiveTask = () =>{
         props.setActiveTask(props.task.id) 
-        navigate(`/tasks/${props.task.id}`)
+        navigate(`/tasks/${props.task.uuid}`)
     }   
 
     useEffect(()=>{
@@ -86,6 +86,7 @@ const Task = props =>{
         
         const taskObj = {
             id: props.task.id,
+            uuid: props.task.uuid,
             alert_datetime: taskDateTime,
             title: taskTitle, 
             category: taskCategory, 
@@ -168,13 +169,13 @@ const Task = props =>{
                                     onBlur={handleSubmit}
                                 /> : 
                                 <div onClick={()=>setToggleDateTime(true)}>
-                                    {props.task.date ? <div className='task__date-inactive'>{moment(props.task.date ).calendar()} </div> : 'Date/Time'}
+                                    {props.task.alert_datetime ? <div className='task__date-inactive'>{moment(props.task.alert_datetime ).calendar()} </div> : 'Date/Time'}
                                 </div>
                                 }
 
                             </div>
                             :
-                            props.task.date ? <div className='task__date-inactive'>{moment(props.task.date ).calendar()} </div>: null
+                            props.task.alert_datetime ? <div className='task__date-inactive'>{moment(props.task.alert_datetime ).calendar()} </div>: null
                         }
                         </div>
                     </div>

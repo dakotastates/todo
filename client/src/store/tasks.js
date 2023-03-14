@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit' 
 
+
 const data = [
     {
         id: 1,
@@ -176,7 +177,7 @@ const slice = createSlice({
   },
   reducers: {
     createTaskSuccess: (state, action) => {
-      state.tasks = [...state.tasks, action.payload.user]
+      state.tasks = [...state.tasks, action.payload]
     },
     getTasksSuccess: (state, action) =>  {
       state.tasks = action.payload
@@ -248,8 +249,7 @@ export const createTask = (task) => async dispatch => {
       // debugger
       throw new Error(json.error + " " + json.message);
     }
-
-    dispatch(createTaskSuccess(json));
+    dispatch(createTaskSuccess(json)) 
   } catch (e) {
     return console.error(e.message);
   }
