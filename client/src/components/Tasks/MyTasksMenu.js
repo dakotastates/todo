@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import './MyTasksMenu.css'
+import { Star, Check2, Plus } from 'react-bootstrap-icons';
 
 const MyTasksMenu = () =>{
     const [toggleMenu, setToggleMenu] = useState(false)
@@ -29,20 +30,49 @@ const MyTasksMenu = () =>{
                 <div className='my__tasks-list-container'>
                     <div className='my__tasks-list-top'>
                         <div className='my__tasks-list-item'>
-                            <div className='my__tasks-list-icon'>Star</div>
+                            <div className='my__tasks-list-icon'><Star /></div>
                             <div className='my__tasks-list-text'>Starred</div>
                             <div className='spacer' />
                         </div>
                     </div>
                     <div className='my__tasks-list-mid'>
                         <ul>
-                            <li><div className='my__tasks-list-item'>My Tasks</div></li>
-                            <li><div className='my__tasks-list-item'>List 2</div></li>
-                            <li><div className='my__tasks-list-item'>List 3</div></li>
+                            <li>
+                                <div className='my__tasks-list-item'>
+                                    <div className='my__tasks-list-icon'><Check2 /></div>
+                                    <div className='my__tasks-list-text'>My Tasks</div>
+                                    <div className='spacer' />
+                                </div>
+                            </li>
+                            <li>
+                                <div className='my__tasks-list-item'>
+                                    <div className='my__tasks-list-icon'></div>
+                                    <div className='my__tasks-list-text'>List 1</div>
+                                    <div className='spacer' />
+                                </div>
+                            </li>
+                            <li>
+                                <div className='my__tasks-list-item'>
+                                    <div className='my__tasks-list-icon'></div>
+                                    <div className='my__tasks-list-text'>List 2</div>
+                                    <div className='spacer' />
+                                </div>
+                            </li>
+                            <li>
+                                <div className='my__tasks-list-item'>
+                                    <div className='my__tasks-list-icon'></div>
+                                    <div className='my__tasks-list-text'>List 3</div>
+                                    <div className='spacer' />
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div className='my__tasks-list-bottom'>
-                        <div className='my__tasks-list-item'>New List</div>
+                        <div className='my__tasks-list-item'>
+                            <div className='my__tasks-list-icon'><Plus /></div>
+                            <div className='my__tasks-list-text'>Create new list</div>
+                            <div className='spacer' />
+                        </div>
                     </div>
                 </div>
             </div>

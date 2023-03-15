@@ -4,152 +4,20 @@ import { createSlice } from '@reduxjs/toolkit'
 const data = [
     {
         id: 1,
-        date: '2023-03-02T01:14' ,
-        task: 'clean room 2', 
-        category: 'personal',
-        priority: 'Minor/low', 
-        completed: false, 
-        details: 'Here are some details',
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: [], 
-        notifs: [
-          {
-            id: 1,
-            type: 'alert', 
-            notif: '15 minutes before'
-          },
-          {
-            id: 2,
-            type: 'alert', 
-            notif: '30 minutes before'
-          }
-        ]
+        list_name: 'list 1', 
+        tasks: []
     },
     {
-        id: 2,
-        date: '2023-03-02T01:14' ,
-        task:'make dinner',
-        category: 'personal',
-        priority: 'Major/high', 
-        completed: false, 
-        details: 'Here sfdsfsd are some details',
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: [], 
-        notifs: [
-          {
-            id: 1,
-            type: 'alert', 
-            notif: '15 minutes before'
-          },
-          {
-            id: 2,
-            type: 'alert', 
-            notif: '30 minutes before'
-          }
-        ]
+      id: 2,
+      list_name: 'list 2', 
+      tasks: []
     },
     {
-        id: 3,
-        date: '2023-03-02T01:14' ,
-        task: 'order tickets',
-        category: 'work', 
-        priority: 'Critical/severe', 
-        completed: false, 
-        details: 'Here are sfsdfsdf some details',
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: [],
-        notifs: [
-          {
-            id: 1,
-            type: 'alert', 
-            notif: '15 minutes before'
-          },
-          {
-            id: 2,
-            type: 'alert', 
-            notif: '30 minutes before'
-          }
-        ]
-    }, 
-    {
-        id: 4,
-        date: '2023-03-02T01:14' ,
-        task: 'Buy Groceries',
-        category: 'personal', 
-        priority: 'Medium/moderate', 
-        completed: false, 
-        details: 'sdsfs  Here are some details',
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: [], 
-        notifs: [
-          {
-            id: 1,
-            type: 'alert', 
-            notif: '15 minutes before'
-          },
-          {
-            id: 2,
-            type: 'alert', 
-            notif: '30 minutes before'
-          }
-        ]
-    }, 
-    {
-        id: 5,
-        date: '2023-03-02T01:14' ,
-        task: 'Pet a dog',
-        category: 'work',
-        completed: false, 
-        details: 'Here are some details sdfsdfsdfsf', 
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: [
-          {
-            id: 1,
-            name: 'guest 1', 
-            email: 'guest1@test.com'
-          }, 
-          {
-            id: 2, 
-            name: 'guest 2', 
-            email: 'guest2@test.com'
-          }
-      ], 
-      notifs: [
-        {
-          id: 1,
-          type: 'alert', 
-          notif: '15 minutes before'
-        },
-        {
-          id: 2,
-          type: 'alert', 
-          notif: '30 minutes before'
-        }
-      ]
-    }, 
-    {
-        id: 6,
-        date: '' ,
-        task: '',
-        category: '',
-        completed: false, 
-        details: '',
-        onCalendar: false,
-        favorited: false,
-        repeat: false,
-        associates: [], 
-        notifs: []
-    }
+      id: 3,
+      list_name: 'list 3', 
+      tasks: []
+    },
+    
 ] 
 
 
@@ -223,12 +91,22 @@ const slice = createSlice({
         }
       }
     },
+    getTasksListsSuccess: (state, action) =>  {
+      // const task = state.tasks.find((task) => task.id === action.payload.taskId)
+      // if (task){
+      //   const notif = task.notifs.find((notif)=> notif.id === action.payload.id)
+      //   if (notif){
+      //     notif.notif = action.payload.notif
+      //   }
+      // }
+      console.log(action.payload)
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess, getTasksListsSuccess } = slice.actions
 
 export const createTask = (task) => async dispatch => {
   const configObj = {
@@ -350,10 +228,19 @@ export const createTaskNotif = (data) => async dispatch => {
   }
 }
 
-export const updateTaskNotif = (data) => async dispatch => {
+export const updateTaskNotif = () => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
     return dispatch(updateTaskNotifSuccess(data))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}
+
+export const getTasksLists = () => async dispatch => {
+  try {
+    // const res = await api.post('/api/auth/logout/')
+    return dispatch(getTasksListsSuccess(data))
   } catch (e) {
     return console.error(e.message);
   }

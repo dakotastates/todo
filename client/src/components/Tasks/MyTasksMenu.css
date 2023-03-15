@@ -43,15 +43,19 @@
 
 .my__tasks-list-top{
     width: 100%;
-    
+    border-bottom: .5px solid;
+    padding-bottom: 5px;
 }
 
 .my__tasks-list-mid{
     width: 100%;
+    overflow: auto;
 }
 
 .my__tasks-list-bottom{
     width: 100%;
+    border-top: .5px solid;
+    padding-top: 5px;
 } 
 
 .my__tasks-list-item{
@@ -64,13 +68,15 @@
 }
 
 .my__tasks-list-item:hover{
-    background-color: grey;
+    background-color: lightgrey;
 } 
 
-.my__tasks-list-item-icon{
-    width: 100%;
+.my__tasks-list-icon{
+    /* width: 100%; */
+    width: 20px;
 }
 
 .my__tasks-list-text{
-    width: 100%;
+    /* width: 100%; */
+    padding-left: 10px;
 }
