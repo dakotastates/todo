@@ -261,4 +261,8 @@
 
 /* .task__options.show{
     display: block;
-} */
+} */ 
+
+.task__favorited{
+    color: gold;
+}

@@ -11,15 +11,32 @@ import CreateTask from './CreateTask';
 const Tasks = props =>{  
 
     const [activeTask, setActiveTask] = useState(null) 
+    const [tasks, setTasks] = useState([])
     const dispatch = useDispatch() 
     const dragItem = useRef();
-    const dragOverItem = useRef(); 
+    const dragOverItem = useRef();  
+
+    const { selectedList } = useSelector(state => state.lists) 
+
+
+
+    useEffect(()=>{
+        if (selectedList.name == 'My Tasks'){
+            let unlistedTasks = props.tasks.filter(task=>!task.list)
+            setTasks(unlistedTasks)
+        } else if (selectedList.name == 'Starred') {
+            let favorited = props.tasks.filter(task=>task.favorited)
+            setTasks(favorited)
+        } else {
+            setTasks(selectedList.tasks)
+        }
+    },[selectedList, props.tasks])
     
 
     let content
-    if (props.tasks){
+    if (tasks){
         
-        const incompletedTasks = props.tasks.filter(task=>!task.completed).reverse() 
+        const incompletedTasks = tasks.filter(task=>!task.completed).reverse() 
 
 
         const dragStart = (e, position) => {
@@ -71,6 +88,7 @@ const Tasks = props =>{
                 <MyTasksMenu />
                 <div className='spacer' />
             </div>
+            
             <div className='tasks__date'>Today</div>
             <CreateTask />
             <div className='tasks__list'>

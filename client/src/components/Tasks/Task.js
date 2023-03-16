@@ -1,5 +1,5 @@
 import {useState, useRef, useEffect} from 'react'
-import { Check, Trash, Star, ThreeDotsVertical, NutFill } from 'react-bootstrap-icons';
+import { Check, Trash, Star, StarFill, ThreeDotsVertical, NutFill } from 'react-bootstrap-icons';
 import {completeTask, updateTask, deleteTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
@@ -94,6 +94,7 @@ const Task = props =>{
             completed: props.task.completed, 
             details: taskDetails, 
             user_id: props.task.user_id,
+            favorited: props.task.favorited
         }
 
         if(props.task !== taskObj ){
@@ -119,6 +120,15 @@ const Task = props =>{
 
     const handleDeleteTask = e =>{
         dispatch(deleteTask(props.task.id)) 
+    } 
+
+    const handleFavorited = ()=>{
+        const taskObj = {
+            id: props.task.id,
+            favorited: !props.task.favorited
+        } 
+
+        dispatch(updateTask(taskObj)) 
     }
 
 
@@ -183,7 +193,7 @@ const Task = props =>{
                 <div className='task__options-container'>
                     <div className='task__options'>
                         <div className='task__option-item'><Trash className='task__trash' onClick={handleDeleteTask}/></div>
-                        <div className='task__option-item'><Star /></div>
+                        <div className='task__option-item' onClick={handleFavorited}>{props.task.favorited ? <div className='task__favorited'><StarFill /> </div>: <Star />}</div>
                         <div className='task__option-item'><ThreeDotsVertical /></div>
                     </div>
                     <div className='task__cp'>

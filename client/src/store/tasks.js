@@ -66,6 +66,7 @@ const slice = createSlice({
         task.alert_datetime = action.payload.alert_datetime
         task.details = action.payload.details
         task.priority = action.payload.priority
+        task.favorited = action.payload.favorited
       }
     },
     deleteTaskSuccess: (state, action) =>  {
@@ -91,22 +92,12 @@ const slice = createSlice({
         }
       }
     },
-    getTasksListsSuccess: (state, action) =>  {
-      // const task = state.tasks.find((task) => task.id === action.payload.taskId)
-      // if (task){
-      //   const notif = task.notifs.find((notif)=> notif.id === action.payload.id)
-      //   if (notif){
-      //     notif.notif = action.payload.notif
-      //   }
-      // }
-      console.log(action.payload)
-    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess, getTasksListsSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess } = slice.actions
 
 export const createTask = (task) => async dispatch => {
   const configObj = {
@@ -237,11 +228,3 @@ export const updateTaskNotif = () => async dispatch => {
   }
 }
 
-export const getTasksLists = () => async dispatch => {
-  try {
-    // const res = await api.post('/api/auth/logout/')
-    return dispatch(getTasksListsSuccess(data))
-  } catch (e) {
-    return console.error(e.message);
-  }
-}
