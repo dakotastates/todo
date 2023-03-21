@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
 import { useParams, useNavigate } from 'react-router-dom';
 import Notifs from '../Notifs/Notifs'
+import TaskDropdownMenu from './TaskDropdownMenu';
 
 
 const Task = props =>{ 
@@ -131,7 +132,7 @@ const Task = props =>{
         dispatch(updateTask(taskObj)) 
     }
 
-
+    
 
     return(
         <div ref={refOne} onClick={handleActiveTask} className={taskClasses} >
@@ -194,7 +195,7 @@ const Task = props =>{
                     <div className='task__options'>
                         <div className='task__option-item'><Trash className='task__trash' onClick={handleDeleteTask}/></div>
                         <div className='task__option-item' onClick={handleFavorited}>{props.task.favorited ? <div className='task__favorited'><StarFill /> </div>: <Star />}</div>
-                        <div className='task__option-item'><ThreeDotsVertical /></div>
+                        <div className='task__option-item'><TaskDropdownMenu task={props.task} /></div>
                     </div>
                     <div className='task__cp'>
                         <div className='task__category'>

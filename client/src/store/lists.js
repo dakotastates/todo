@@ -6,7 +6,7 @@ const slice = createSlice({
   name: 'lists',
   initialState: {
     lists: [], 
-    selectedList: initialList
+    selectedList: {}
   },
   reducers: {
     createListSuccess: (state, action) => {
@@ -28,15 +28,19 @@ const slice = createSlice({
       state.lists = lists
     },
 
-    setSelectedListSuccess: (state, action) =>  {
+    setSelectedListSuccess: (state, action) =>  { 
       state.selectedList = action.payload
     },
+
+    // AddTaskToListSuccess: (state, action) =>  {
+    //   console.log(action.payload)
+    // },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createListSuccess, getListsSuccess, updateListSuccess, deleteListSuccess, setSelectedListSuccess } = slice.actions
+const { createListSuccess, getListsSuccess, updateListSuccess, deleteListSuccess, setSelectedListSuccess, AddTaskToListSuccess } = slice.actions
 
 export const createList = (list) => async dispatch => {
   const configObj = {
@@ -52,7 +56,7 @@ export const createList = (list) => async dispatch => {
   try {
     const res = await fetch("http://localhost:3000/api/v1/lists", configObj);
     const json = await res.json();
-    
+    debugger
     if (json.error) {
       throw new Error(json.error + " " + json.message);
     }
@@ -138,4 +142,13 @@ export const setSelectedList = (list) => async dispatch => {
   } catch (e) {
     return console.error(e.message);
   }
-} 
+}  
+
+// export const AddTaskToList = (data) => async dispatch => {
+
+//   try {
+//     return dispatch(AddTaskToListSuccess())
+//   } catch {
+
+//   }
+// }

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :users
       resources :tasks
       resources :lists
+      resources :listtasks
       
       post '/login', to: 'sessions#login'
     end

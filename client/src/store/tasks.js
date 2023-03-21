@@ -47,7 +47,7 @@ const slice = createSlice({
     createTaskSuccess: (state, action) => {
       state.tasks = [...state.tasks, action.payload]
     },
-    getTasksSuccess: (state, action) =>  {
+    getTasksSuccess: (state, action) =>  { 
       state.tasks = action.payload
     },
     completeTaskSuccess: (state, action) =>  {
@@ -92,12 +92,19 @@ const slice = createSlice({
         }
       }
     },
+    addTaskToListSuccess: (state, action) =>  {
+      const task = state.tasks.find((task) => task.id === action.payload.taskId)
+      if (task){
+        // const notif = task.notifs.find((notif)=> notif.id === action.payload.id)
+        console.log(task.list)
+      }
+    },
   },
 }); 
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess } = slice.actions
+const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess, addTaskToListSuccess } = slice.actions
 
 export const createTask = (task) => async dispatch => {
   const configObj = {
@@ -228,3 +235,29 @@ export const updateTaskNotif = () => async dispatch => {
   }
 }
 
+export const addTaskToList = (listtask) => async dispatch => {
+  const configObj = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+    body: JSON.stringify({listtask}),
+  }; 
+
+
+  
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/listtasks/${listtask.list_id}`, configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+      // debugger
+      throw new Error(json.error + " " + json.message);
+    }
+    return dispatch(addTaskToListSuccess(json))
+  } catch (e) {
+    return console.error(e.message);
+  }
+}

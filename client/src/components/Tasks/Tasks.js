@@ -21,14 +21,13 @@ const Tasks = props =>{
 
 
     useEffect(()=>{
-        if (selectedList.name == 'My Tasks'){
-            let unlistedTasks = props.tasks.filter(task=>!task.list)
-            setTasks(unlistedTasks)
-        } else if (selectedList.name == 'Starred') {
+        if (selectedList?.name == 'Starred') {
             let favorited = props.tasks.filter(task=>task.favorited)
             setTasks(favorited)
         } else {
-            setTasks(selectedList.tasks)
+            const listedTasks = props.tasks.filter(task=>task.list.id == selectedList?.id)
+            
+            setTasks(listedTasks)
         }
     },[selectedList, props.tasks])
     
@@ -58,7 +57,8 @@ const Tasks = props =>{
         };
     
         
-        if (incompletedTasks.length > 0) {
+        if (incompletedTasks.length > 0) { 
+            
             content = incompletedTasks?.map((task, index) => (
                 <div
                     key={index}
@@ -99,4 +99,19 @@ const Tasks = props =>{
     )
 } 
 
-export default Tasks;
+export default Tasks; 
+
+
+
+// useEffect(()=>{
+//     if (selectedList.name == 'My Tasks'){
+//         let unlistedTasks = props.tasks.filter(task=>!task.list)
+//         setTasks(unlistedTasks)
+//     } else if (selectedList.name == 'Starred') {
+//         let favorited = props.tasks.filter(task=>task.favorited)
+//         setTasks(favorited)
+//     } else {
+//         const listedTasks = props.tasks.filter(task=>task.list)
+//         setTasks(listedTasks)
+//     }
+// },[selectedList, props.tasks])
