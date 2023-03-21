@@ -56,7 +56,7 @@ export const createList = (list) => async dispatch => {
   try {
     const res = await fetch("http://localhost:3000/api/v1/lists", configObj);
     const json = await res.json();
-    debugger
+    
     if (json.error) {
       throw new Error(json.error + " " + json.message);
     }
