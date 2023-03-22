@@ -7,9 +7,9 @@ class Api::V1::TasksController < ApplicationController
 
     def create 
         @task = @current_user.tasks.new(task_params)
-        
+
         if @task.save 
-            render json:{task: @task}, status: 201
+            render json:{task: TaskSerializer.new(@task)}, status: 201
         else 
             render json: { error: @task.errors.full_messages }, status: :not_acceptable
         end
@@ -38,7 +38,7 @@ class Api::V1::TasksController < ApplicationController
     private 
 
     def task_params 
-        params.require(:task).permit(:id, :uuid, :title, :details, :completed, :priority, :category, :alert_datetime, :repeat, :favorited, :user_id)
+        params.require(:task).permit(:id, :uuid, :title, :details, :completed, :priority, :category, :alert_datetime, :repeat, :favorited, :user_id, list_task_attributes: [:list_id])
     end 
 
     def find_task

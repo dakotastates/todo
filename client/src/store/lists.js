@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit' 
 
+const initialList = localStorage.getItem('selectedList') ? JSON.parse(localStorage.getItem('selectedList')) : {}
+
 // Slice
 const slice = createSlice({
   name: 'lists',
   initialState: {
     lists: [], 
-    selectedList: {}
+    selectedList: initialList
   },
   reducers: {
     createListSuccess: (state, action) => {
@@ -27,8 +29,9 @@ const slice = createSlice({
       state.lists = lists
     },
 
-    setSelectedListSuccess: (state, action) =>  { 
+    setSelectedListSuccess: (state, action) =>  {  
       state.selectedList = action.payload
+      localStorage.setItem('selectedList', JSON.stringify(action.payload))
     },
 
     // AddTaskToListSuccess: (state, action) =>  {

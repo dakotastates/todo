@@ -22,12 +22,11 @@ const Tasks = props =>{
 
 
     useEffect(()=>{
-        if (selectedList?.name == 'Starred') {
+        if (selectedList.name == 'Starred') {
             let favorited = props.tasks.filter(task=>task.favorited)
             setTasks(favorited)
         } else {
-            const listedTasks = props.tasks.filter(task=>task.list.id == selectedList?.id)
-            
+            const listedTasks = props.tasks.filter(task=>task.list?.id == selectedList.id)
             setTasks(listedTasks)
         }
     },[selectedList, props.tasks])

@@ -44,7 +44,7 @@ const slice = createSlice({
     tasks: [],
   },
   reducers: {
-    createTaskSuccess: (state, action) => {
+    createTaskSuccess: (state, action) => { 
       state.tasks = [...state.tasks, action.payload]
     },
     getTasksSuccess: (state, action) =>  { 

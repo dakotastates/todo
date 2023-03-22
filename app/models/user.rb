@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'Invalid email' } 
 
-    after_save do 
+    after_create do 
         self.lists.create({name: 'My Tasks'})
     end
 end

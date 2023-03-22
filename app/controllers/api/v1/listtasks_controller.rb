@@ -2,6 +2,15 @@ class Api::V1::ListtasksController < ApplicationController
     # before_action :find_listtask, only: [:update, :destroy] 
     before_action :find_list, only: [:create, :destroy] 
 
+    def create 
+        @listtask = Listtask.new(list_params)
+        
+        if @listtask.save 
+            render json:{listtask: @listtask}, status: 201
+        else 
+            render json: { error: @listtask.errors.full_messages }, status: :not_acceptable
+        end
+    end 
 
     def update 
         

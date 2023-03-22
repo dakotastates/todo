@@ -16,6 +16,7 @@ const MyTasksMenu = () =>{
 
     const dispatch = useDispatch()
     const { lists, selectedList } = useSelector(state => state.lists)
+    const { tasks } = useSelector(state => state.tasks)
 
     const handleOpen = () =>{
         setToggleMenu(!toggleMenu)
@@ -38,9 +39,9 @@ const MyTasksMenu = () =>{
         })
     },[])  
 
-    useEffect(()=>{
-        dispatch(setSelectedList(lists[0]))
-    },[lists[0]])
+    // useEffect(()=>{
+    //     dispatch(setSelectedList(lists[0]))
+    // },[lists[0]])
 
     const handleListClick = (list) =>{
         // setSelectedList(list) 
