@@ -9,6 +9,7 @@ import TaskLists from './TaskLists';
 
 const MyTasksMenu = () =>{
     const [toggleMenu, setToggleMenu] = useState(false)
+    const [loading, setLoading] = useState(false)
 
 
     const refMenu = useRef(null) 
@@ -28,15 +29,30 @@ const MyTasksMenu = () =>{
 
     useEffect(()=>{
         document.addEventListener('click', closeOpenMenu, true)
-    },[]) 
+    },[])  
+
+    useEffect(()=>{ 
+        setLoading(true)
+        dispatch(getLists()).then(()=>{
+            setLoading(false)
+        })
+    },[])  
+
+    useEffect(()=>{
+        dispatch(setSelectedList(lists[0]))
+    },[lists[0]])
 
     const handleListClick = (list) =>{
         // setSelectedList(list) 
         dispatch(setSelectedList(list)) 
-    }
+    } 
 
     
 
+    
+    if (loading){
+        return(<div>Loading...</div>)
+    }else{
     return (
     <div className='my__tasks-container'>
         <div className='my__tasks-button' onClick={handleOpen}>{selectedList?.name}</div>
@@ -62,7 +78,9 @@ const MyTasksMenu = () =>{
         } 
 
     </div>
+    
     )
+    }
 }
 
 export default MyTasksMenu 

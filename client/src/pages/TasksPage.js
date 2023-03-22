@@ -11,62 +11,19 @@ const TasksPage = props =>{
     const { lists, selectedList } = useSelector(state => state.lists) 
     const [loading, setLoading] = useState(false)
 
-    // useEffect(()=>{
-    //     // setLoading(true)
-    //     dispatch(getLists()).then(()=>{
-    //         // setLoading(false)
-    //     })
-    // },[]) 
-
     useEffect(()=>{
-        // setLoading(true)
-        dispatch(getTasks()).then(()=>{
-            // setLoading(false)
-        })
+        dispatch(getTasks())
     },[])   
 
 
 
 
-    useEffect(()=>{
-        // setLoading(true)
-        dispatch(getLists()).then(()=>{
-            // dispatch(setSelectedList(lists[0])).then(()=>{
-            //     setLoading(false)
-            // })
-            
-        })
-    },[])  
-
-    // if (lists[0]){      
-    //     dispatch(setSelectedList(lists[0])).then(()=>{
+    // useEffect(()=>{ 
+    //     setLoading(true)
+    //     dispatch(getLists()).then(()=>{
     //         setLoading(false)
     //     })
-    // } else {
-    //     const newListObj = {
-    //         name: 'My Tasks'
-    //     }
-    //     console.log('create list', newListObj)
-    //     // dispatch(setSelectedList(lists[0]))
-    // } 
-
-    // useEffect(()=>{
-    //     setLoading(true)
-        // if (lists){      
-        //     dispatch(setSelectedList(lists[0])).then(()=>{
-        //         setLoading(false)
-        //     })
-        // } else {
-        //     const newListObj = {
-        //         name: 'My Tasks'
-        //     }
-        //     console.log('create list', newListObj)
-        //     // dispatch(setSelectedList(lists[0]))
-        // } 
-    // },[])
-
-
-
+    // },[])  
 
    if (loading){
         return(

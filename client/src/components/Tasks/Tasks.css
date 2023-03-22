@@ -68,6 +68,7 @@
     opacity: .8;
     border-radius: 10px;
     background-color: #EEEEEE;
+    width: 100%;
 }  
 
 .task:hover{
@@ -338,4 +339,20 @@
   .list_form-input{
     /* border-radius: 5px; */
     height: 25px;
+  } 
+
+
+  .tasks__create-container{
+    display: flex;
+    align-items: center;
   }
+
+  .tasks__create-menu{
+    cursor: pointer;
+  }
+
+  /* .tasks__create-menu:hover{
+    border: 1px solid;
+
+    border-radius: 20px;
+  } */

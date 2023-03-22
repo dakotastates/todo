@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit' 
 
-const initialList = {id: 0, name: 'My Tasks'}
 // Slice
 const slice = createSlice({
   name: 'lists',
@@ -79,7 +78,6 @@ export const getLists = () => async dispatch => {
     const json = await res.json();
     
     if (json.error) {
-      // debugger
       throw new Error(json.error + " " + json.message);
     }
     return dispatch(getListsSuccess(json))

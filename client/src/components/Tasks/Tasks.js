@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {rearrangeTasks} from '../../store/tasks'
 import MyTasksMenu from './MyTasksMenu';
 import CreateTask from './CreateTask';
+import ListOptionsMenu from './ListOptionsMenu';
 
 
 
@@ -90,7 +91,11 @@ const Tasks = props =>{
             </div>
             
             <div className='tasks__date'>Today</div>
-            <CreateTask />
+            <div className='tasks__create-container'>
+                <CreateTask />
+                <div className='tasks__create-menu'><ListOptionsMenu /></div>
+            </div>
+            
             <div className='tasks__list'>
                 {content}
             </div> 

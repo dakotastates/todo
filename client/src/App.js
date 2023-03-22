@@ -22,7 +22,6 @@ function App() {
 
   const { user } = useSelector(state => state.user)
   
-
   const drawerToggleClickHandler = () =>{
     setDrawerToggle(!drawerToggle)
   } 
