@@ -33,6 +33,7 @@ const slice = createSlice({
         task.details = action.payload.details
         task.priority = action.payload.priority
         task.favorited = action.payload.favorited
+        task.list = action.payload.list
       }
     },
     deleteTaskSuccess: (state, action) =>  {
@@ -149,7 +150,7 @@ export const updateTask = (task) => async dispatch => {
     },
     body: JSON.stringify({task}),
   };
-
+  
   try {
     const res = await fetch(`http://localhost:3000/api/v1/tasks/${task.id}`, configObj);
     const json = await res.json();

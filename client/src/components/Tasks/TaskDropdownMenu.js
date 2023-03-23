@@ -7,6 +7,7 @@ import {getLists, setSelectedList} from '../../store/lists'
 import {addTaskToList} from '../../store/tasks'
 import CreateTaskList from './CreateTaskList';
 import TaskLists from './TaskLists';
+import {updateTask} from '../../store/tasks'
 
 const TaskDropdownMenu = props =>{
     const [toggleMenu, setToggleMenu] = useState(false)
@@ -42,11 +43,13 @@ const TaskDropdownMenu = props =>{
 
 
     const handleListClick = (list) =>{
-        const listTaskObj = {
-            list_id: list.id, 
-            task_id: props.task.id
+        const taskObj = {
+            id: props.task.id,
+            list_task_attributes: {
+                list_id: list.id, 
+            } 
         }
-        dispatch(addTaskToList(listTaskObj))
+        dispatch(updateTask(taskObj))
     } 
 
 

@@ -6,6 +6,7 @@ import moment from 'moment';
 import { useParams, useNavigate } from 'react-router-dom';
 import Notifs from '../Notifs/Notifs'
 import TaskDropdownMenu from './TaskDropdownMenu';
+import {setSelectedList} from '../../store/lists'
 
 
 const Task = props =>{ 
@@ -66,7 +67,8 @@ const Task = props =>{
     },[]) 
 
     useEffect(()=>{
-        if(params?.id == props.task.id){
+        if(params?.id == props.task.uuid){
+            // dispatch(setSelectedList(props.task.list))
             props.setActiveTask(props.task.id)
             setActive(true)
         }
