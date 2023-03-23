@@ -9,6 +9,7 @@ import ListOptionsMenu from './ListOptionsMenu';
 
 
 
+
 const Tasks = props =>{  
 
     const [activeTask, setActiveTask] = useState(null) 
@@ -19,18 +20,17 @@ const Tasks = props =>{
 
     const { selectedList } = useSelector(state => state.lists) 
 
-
-
     useEffect(()=>{
         if (selectedList.name == 'Starred') {
             let favorited = props.tasks.filter(task=>task.favorited)
             setTasks(favorited)
         } else {
-            const listedTasks = props.tasks.filter(task=>task.list?.id == selectedList.id)
+            
+            let listedTasks = props.tasks.filter(task=>task.list?.id == selectedList.id)
             setTasks(listedTasks)
         }
-    },[selectedList, props.tasks])
-    
+    },[selectedList, props.tasks])  
+
 
     let content
     if (tasks){
@@ -104,18 +104,3 @@ const Tasks = props =>{
 } 
 
 export default Tasks; 
-
-
-
-// useEffect(()=>{
-//     if (selectedList.name == 'My Tasks'){
-//         let unlistedTasks = props.tasks.filter(task=>!task.list)
-//         setTasks(unlistedTasks)
-//     } else if (selectedList.name == 'Starred') {
-//         let favorited = props.tasks.filter(task=>task.favorited)
-//         setTasks(favorited)
-//     } else {
-//         const listedTasks = props.tasks.filter(task=>task.list)
-//         setTasks(listedTasks)
-//     }
-// },[selectedList, props.tasks])

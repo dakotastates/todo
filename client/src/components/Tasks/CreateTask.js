@@ -19,7 +19,7 @@ const CreateTask = props =>{
         priority: '', 
         uuid: '', 
         list_task_attributes: {
-            list_id: selectedList?.id
+            list_id: ''
         }
     } 
 
@@ -28,6 +28,7 @@ const CreateTask = props =>{
 
         const newObj= JSON.parse(JSON.stringify(dataObj))
         newObj.uuid = unique_id
+        newObj.list_task_attributes.list_id = selectedList.id
         dispatch(createTask(newObj)).then(()=>{
             navigate(`/tasks/${newObj.uuid}`)
         })

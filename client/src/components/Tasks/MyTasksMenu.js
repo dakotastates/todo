@@ -39,12 +39,9 @@ const MyTasksMenu = () =>{
         })
     },[])  
 
-    // useEffect(()=>{
-    //     dispatch(setSelectedList(lists[0]))
-    // },[lists[0]])
+
 
     const handleListClick = (list) =>{
-        // setSelectedList(list) 
         dispatch(setSelectedList(list)) 
     } 
 

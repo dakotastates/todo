@@ -56,7 +56,7 @@ const Task = props =>{
         }) 
     } 
 
-    const handleActiveTask = () =>{
+    const handleActiveTask = () =>{ 
         props.setActiveTask(props.task.id) 
         navigate(`/tasks/${props.task.uuid}`)
     }   

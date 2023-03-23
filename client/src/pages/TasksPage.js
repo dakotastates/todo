@@ -12,18 +12,12 @@ const TasksPage = props =>{
     const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
-        dispatch(getTasks())
+        setLoading(true)
+        dispatch(getTasks()).then(()=>{
+            setLoading(false)
+        })
     },[])   
 
-
-
-
-    // useEffect(()=>{ 
-    //     setLoading(true)
-    //     dispatch(getLists()).then(()=>{
-    //         setLoading(false)
-    //     })
-    // },[])  
 
    if (loading){
         return(

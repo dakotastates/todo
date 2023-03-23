@@ -1,42 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit' 
 
 
-const data = [
-    {
-        id: 1,
-        list_name: 'list 1', 
-        tasks: []
-    },
-    {
-      id: 2,
-      list_name: 'list 2', 
-      tasks: []
-    },
-    {
-      id: 3,
-      list_name: 'list 3', 
-      tasks: []
-    },
-    
-] 
-
-
-// const _taskObject = (state) => ({
-//   task: {
-//     id: state.id,
-//     username: state.username,
-//     password: state.password,
-//     firstName: state.firstName,
-//     lastName: state.lastName,
-//     bio: state.bio,
-//     avatar: state.avatar,
-//     // admin_level: state.adminLevel
-
-
-//   },
-
-// });
-
 // Slice
 const slice = createSlice({
   name: 'tasks',
@@ -45,11 +9,13 @@ const slice = createSlice({
   },
   reducers: {
     createTaskSuccess: (state, action) => { 
-      state.tasks = [...state.tasks, action.payload]
+      
+      state.tasks = [...state.tasks, action.payload.task]
     },
     getTasksSuccess: (state, action) =>  { 
       state.tasks = action.payload
     },
+
     completeTaskSuccess: (state, action) =>  {
       const task = state.tasks.find((task) => task.id === action.payload)
       if (task) {
@@ -104,7 +70,17 @@ const slice = createSlice({
 export default slice.reducer 
 
 // Actions
-const { createTaskSuccess, getTasksSuccess, completeTaskSuccess, updateTaskSuccess, deleteTaskSuccess, rearrangeTasksSuccess, createTaskNotifSuccess, updateTaskNotifSuccess, addTaskToListSuccess } = slice.actions
+const { 
+  createTaskSuccess, 
+  getTasksSuccess, 
+  completeTaskSuccess, 
+  updateTaskSuccess, 
+  deleteTaskSuccess, 
+  rearrangeTasksSuccess, 
+  createTaskNotifSuccess, 
+  updateTaskNotifSuccess, 
+  addTaskToListSuccess,
+} = slice.actions
 
 export const createTask = (task) => async dispatch => {
   const configObj = {
@@ -130,7 +106,7 @@ export const createTask = (task) => async dispatch => {
     return console.error(e.message);
   }
 }
-export const getTasks = () => async dispatch => { 
+export const getTasks = (id) => async dispatch => { 
 
   const configObj = {
     method: "GET",
@@ -229,7 +205,7 @@ export const createTaskNotif = (data) => async dispatch => {
 export const updateTaskNotif = () => async dispatch => {
   try {
     // const res = await api.post('/api/auth/logout/')
-    return dispatch(updateTaskNotifSuccess(data))
+    return dispatch(updateTaskNotifSuccess())
   } catch (e) {
     return console.error(e.message);
   }
