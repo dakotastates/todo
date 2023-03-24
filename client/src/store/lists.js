@@ -18,9 +18,10 @@ const slice = createSlice({
     },
     updateListSuccess: (state, action) =>  {
       const list = state.lists.find((list) => list.id === action.payload.id)
-  
+      
       if (list) {
-        list.name = action.payload.name
+        list.name = action.payload.name 
+        state.selectedList.name = action.payload.name
       }
     },
     deleteListSuccess: (state, action) =>  {

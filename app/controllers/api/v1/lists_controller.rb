@@ -1,5 +1,5 @@
 class Api::V1::ListsController < ApplicationController
-
+    before_action :find_list, only: [:update, :destroy]
     def index 
         @lists = @current_user.lists.all
         render json: @lists, status: 200
@@ -36,6 +36,6 @@ class Api::V1::ListsController < ApplicationController
     end 
 
     def find_list
-        @list = @current_user.list.find(params[:id])
+        @list = @current_user.lists.find(params[:id])
     end
 end

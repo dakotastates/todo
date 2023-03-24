@@ -68,6 +68,18 @@
     justify-content: space-between;
 }
 
+.my__tasks-list-item.disabled{
+    pointer-events: none;
+    opacity: .4;
+} 
+
+.my__tasks-list-text-default-message{
+    pointer-events: none;
+    opacity: .4; 
+    font-size: .9rem;
+    text-align: left;
+}
+
 .my__tasks-list-item:hover{
     background-color: lightgrey;
 } 
