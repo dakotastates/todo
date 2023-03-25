@@ -26,7 +26,7 @@ const slice = createSlice({
     },
     deleteListSuccess: (state, action) =>  {
       const lists = state.lists.filter((list) => list.id !== action.payload)
-  
+      
       state.lists = lists
     },
 

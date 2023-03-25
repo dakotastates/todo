@@ -38,13 +38,12 @@ const ListOptionsMenu = () =>{
 
 
     const handleListDelete = ()=>{
-        console.log('delete')
+        return dispatch(deleteList(selectedList.id)).then(()=> setSelectedList(lists[0]))
     } 
 
    
 
     const handleListUpdate = ()=>{
-        console.log('update', listName) 
         const listObj = {
             id: selectedList.id, 
             name: listName
@@ -75,7 +74,8 @@ const ListOptionsMenu = () =>{
 
     const modalContentDelete = (
         <>
-            <p>Are you sure you want to Delete this list?</p>
+            <p>Delete this list?</p>
+            <p>All tasks in this list will be permanently deleted</p>
         </>
     )
 

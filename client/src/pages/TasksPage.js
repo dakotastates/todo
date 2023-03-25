@@ -25,7 +25,7 @@ const TasksPage = props =>{
         )
     } else {
         return(
-            <><Tasks tasks={tasks} /></>
+            <div><Tasks tasks={tasks} /></div>
         )
     }
 

@@ -3,7 +3,7 @@ import { Check, Trash, Star, StarFill, ThreeDotsVertical, NutFill } from 'react-
 import {completeTask, updateTask, deleteTask} from '../../store/tasks'
 import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Notifs from '../Notifs/Notifs'
 import TaskDropdownMenu from './TaskDropdownMenu';
 import {setSelectedList} from '../../store/lists'
@@ -21,6 +21,8 @@ const Task = props =>{
     const refOne = useRef(null)
     const params = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
+
     
 
     const dispatch = useDispatch() 
@@ -63,7 +65,18 @@ const Task = props =>{
     }   
 
     useEffect(()=>{
+        if (!props.activeTask){
+            navigate('/tasks')  
+        }
+    },[props.activeTask])
+
+    useEffect(()=>{
         document.addEventListener('click', handleClickOutside, true)
+        // document.removeEventListener('unload', handleClickOutside)
+        return ()=> {
+            // document.removeEventListener('unload', handleClickOutside)
+            document.removeEventListener('beforeunload', handleClickOutside)
+        }
     },[]) 
 
     useEffect(()=>{
@@ -75,10 +88,12 @@ const Task = props =>{
     },[params])
     
     const handleClickOutside = e => {
+        
         if(!refOne.current?.contains(e.target)) {
             setActive(false)
             setToggleDateTime(false)
-            navigate('/tasks')
+            props.setActiveTask(null)
+            
         } 
 
     } 
