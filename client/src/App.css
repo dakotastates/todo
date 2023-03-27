@@ -26,7 +26,7 @@
  } 
 
  .main-content{ 
-  /* position: relative; */
+  position: relative;
   color: black;
   background-color: #DADADA;
   /* background-color: green; */

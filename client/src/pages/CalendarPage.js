@@ -4,16 +4,13 @@ import "../components/Calendar/Calendar.css"
 const CalendarPage = () =>{ 
 
     
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octobor', 'November', 'December']
+    // const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octobor', 'November', 'December']
 
-    const currentDay = new Date() 
+    // const currentDay = new Date() 
 
 
     return(
-        <div className='calendar'>
-            <div className='calendar__header'>
-                <h2>{months[currentDay.getMonth()]} {currentDay.getFullYear()}</h2>
-            </div>
+        <div className='calendar__container'>
         <Calendar />
         </div>
     )

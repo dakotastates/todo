@@ -5,7 +5,7 @@ const CalendarDays = props =>{
     let currentDays = []
     
     for (let day = 0; day < 42; day++) {
-        if (day === 0 && weekdayOfFirstDay === 0) {
+        if (day === 0 && weekdayOfFirstDay === 0) { 
           firstDayOfMonth.setDate(firstDayOfMonth.getDate() - 7);
         } else if (day === 0) {
           firstDayOfMonth.setDate(firstDayOfMonth.getDate() + (day - weekdayOfFirstDay));
