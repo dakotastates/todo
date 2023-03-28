@@ -18,7 +18,7 @@ const CalendarDrawer = () =>{
             {moment(day).format("MM/DD/YYYY")}
         </div>
         <div className='right-side_drawer__content'>
-            <DateTimeSelector />
+            <DateTimeSelector day={day} />
         </div>
     </div>
     )
