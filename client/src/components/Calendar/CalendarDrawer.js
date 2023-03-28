@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment';
+import DateTimeSelector from './DateTimeSelector';
 
 const CalendarDrawer = () =>{
 
@@ -17,7 +18,7 @@ const CalendarDrawer = () =>{
             {moment(day).format("MM/DD/YYYY")}
         </div>
         <div className='right-side_drawer__content'>
-            Calendar Drawer Content
+            <DateTimeSelector />
         </div>
     </div>
     )

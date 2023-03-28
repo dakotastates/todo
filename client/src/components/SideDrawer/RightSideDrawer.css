@@ -21,7 +21,8 @@
 
 .right-side_drawer__content{
     width: 100%;
-    /* background-color: green; */
+    height: 625px;
+    overflow: auto;
     
 } 
 
