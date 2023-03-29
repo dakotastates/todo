@@ -1,5 +1,8 @@
 import {useState, useRef, useEffect} from 'react'
 import moment from 'moment';
+import CalendarEventsForm from './CalendarEventsForm';
+// import { Clock } from 'react-bootstrap-icons';
+
 
 const DateTimeSelector = ({day})=>{
     const [toggleModal, setToggleModal] = useState(false)
@@ -92,21 +95,14 @@ const DateTimeSelector = ({day})=>{
         {toggleModal ? 
             <div  className="calendar__modal">
                 <div className="calendar__modal-content" ref={refModal}>
-                    <div className='calendar__form-container'>
-                        <input className='calendar__form-title' type='text' placeholder='Add title' />
-                        <div className='datetime-container'>
-                            <div className='date'><input type='date' value={date} onChange={(e)=>setDate(e.target.value)} /></div>
-                            <div className='time'><input type='time' value={startTime} onChange={(e)=>setStartTime(e.target.value)} /></div>
-                            <div className='time'><input type='time' value={endTime} onChange={(e)=>setEndTime(e.target.value)} /></div>
-                        </div>
-                        <div><input type='checkbox' /> <label>All day</label></div>
-                        <div className='calendar__form-buttons'>
-                            <div className='calendar__form-button'>Cancel</div>
-                            <div className='calendar__form-button submit'>Done</div>
-                        </div>
-                        
-                    </div>
-
+                    <CalendarEventsForm 
+                        setDate={setDate} 
+                        setStartTime={setStartTime} 
+                        setEndTime={setEndTime} 
+                        date={date} 
+                        startTime={startTime} 
+                        endTime={endTime}
+                    />
                 </div>
             </div>
             : null
@@ -116,3 +112,16 @@ const DateTimeSelector = ({day})=>{
 } 
 
 export default DateTimeSelector
+
+
+{/* <input className='calendar__form-title' type='text' placeholder='Add title' />
+<div className='datetime-container'>
+    <div className='date'><input type='date' value={date} onChange={(e)=>setDate(e.target.value)} /></div>
+    <div className='time'><input type='time' value={startTime} onChange={(e)=>setStartTime(e.target.value)} /></div>
+    <div className='time'><input type='time' value={endTime} onChange={(e)=>setEndTime(e.target.value)} /></div>
+</div>
+<div><input type='checkbox' /> <label>All day</label></div>
+<div className='calendar__form-buttons'>
+    <div className='calendar__form-button'>Cancel</div>
+    <div className='calendar__form-button submit'>Done</div>
+</div> */}

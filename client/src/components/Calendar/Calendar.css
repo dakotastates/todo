@@ -139,6 +139,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
+    width: 100%;
 }
 
 .datetime-container{
@@ -147,6 +148,13 @@
 
 .calendar__form-title{
     width: 100%;
+    height: 30px;
+    /* border-radius: 5px; */
+    padding: 10px;
+    border-style: none;
+    border-bottom: 2px solid blue;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
 }
 
 .calendar__form-buttons{
@@ -180,15 +188,94 @@
   }
   
   /* Modal Content/Box */
-  .calendar__modal-content {
+.calendar__modal-content {
     display: flex;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
-    height: 400px;
-    width: 40%; /* Could be more or less, depending on screen size */
-  }
+    /* height: 400px; */
+    width: 400px; /* Could be more or less, depending on screen size */
+}
+
+.calendar__form-input-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.calendar__spacer{
+    width: 25px;
+    margin-right: 10px;
+    /* background-color: pink; */
+}
+
+.calendar__type-toggle-container{
+    display: flex;
+    width: 100%;
+    justify-content: start;
+}
+
+.calendar__type-toggle-button{
+    /* border: 1px solid; */
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.calendar__type-toggle-button:hover{
+    background-color: lightblue;
+}
+
+.calendar__input-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.calendar__date-select-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    /* justify-content: start; */
+}
+
+.calendar__date-select{
+    display: flex;
+    align-items: center;
+    /* position: relative; */
+}
+
+.calendar__form-checkbox{
+    display: flex;
+    align-items: start;
+    margin-top: 10px;
+}
+
+.calendar__checkbox-lable-container{
+    display: flex;
+    width: 100%;
+    /* justify-content: space-between; */
+}
+
+.calendar__checkbox{
+    margin-right: 10px;
+}
+
+.calendar__datetime-input{
+    margin-right: 5px;
+    width: 100px;
+    border-style: none;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.calendar__datetime-input:hover{
+    background-color: lightblue;
+}
+
   
 
