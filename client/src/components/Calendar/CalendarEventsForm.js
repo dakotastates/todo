@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { Clock } from 'react-bootstrap-icons';
 
 
-const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime, endTime}) =>{
+const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime, endTime, setEndDate, endDate}) =>{
     const [title, setTitle] = useState('')
     const [allDay, setAllDay] = useState(false)
 
@@ -12,7 +12,8 @@ const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime,
             date: date, 
             startTime: startTime, 
             endTime: endTime, 
-            allDay: allDay
+            allDay: allDay, 
+            endDate: endDate
 
         }
         console.log(eventObj)
@@ -37,8 +38,14 @@ const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime,
                 <div className='calendar__spacer'><Clock /></div>
                 <div className='datetime-container'>
                     <div className='date'><input className='calendar__datetime-input' type='date' value={date} onChange={(e)=>setDate(e.target.value)} /></div>
-                    <div className='time'><input className='calendar__datetime-input' type='time' value={startTime} onChange={(e)=>setStartTime(e.target.value)} /></div>
-                    <div className='time'><input className='calendar__datetime-input' type='time' value={endTime} onChange={(e)=>setEndTime(e.target.value)} /></div>
+                    {!allDay ? 
+                    <>
+                        <div className='time'><input className='calendar__datetime-input' type='time' value={startTime} onChange={(e)=>setStartTime(e.target.value)} /></div>
+                        <div className='time'>- <input className='calendar__datetime-input' type='time' value={endTime} onChange={(e)=>setEndTime(e.target.value)} /></div>
+                    </>
+                    : 
+                    <div className='date'> - <input className='calendar__datetime-input' type='date' value={endDate} onChange={(e)=>setEndDate(e.target.value)} /></div>
+                    }
                 </div>
             </div>
             <div className='calendar__form-checkbox'>

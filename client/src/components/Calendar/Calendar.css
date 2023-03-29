@@ -53,6 +53,10 @@
     height: 75px;
     position: relative;
     border: 1px solid #a6a6a6;
+    /* text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden; */
 }
 
 .calendar__day:hover {
@@ -198,7 +202,7 @@
     border: 1px solid #888;
     border-radius: 10px;
     /* height: 400px; */
-    width: 400px; /* Could be more or less, depending on screen size */
+    width: 410px; /* Could be more or less, depending on screen size */
 }
 
 .calendar__form-input-container{
@@ -277,5 +281,22 @@
     background-color: lightblue;
 }
 
+.calendar__on-event{
+
+    display: inline-block;
+    white-space: nowrap;
+    /* margin: 2px; */
+    width: 120px;
+    text-overflow: ellipsis;
+    position: relative;
+    overflow: hidden;
+    font-size: .7rem;
+    text-align: left;
+}
+
+.calendar__on-event-container{
+    padding-top: 16px;
+    height: 100%;
+}
   
 

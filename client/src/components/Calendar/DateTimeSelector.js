@@ -8,6 +8,7 @@ const DateTimeSelector = ({day})=>{
     const [toggleModal, setToggleModal] = useState(false)
     const [datetime, setDatetime] = useState(null)
     const [date, setDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
     const [startTime, setStartTime] = useState(null)
     const [endTime, setEndTime] = useState(null)
 
@@ -56,9 +57,11 @@ const DateTimeSelector = ({day})=>{
         let startdatetime = new Date(selectedDatetime)
         let endDatetime = new Date(selectedDatetime)
         let newEndDatetime = new Date(addHours(endDatetime, 1))
+        
 
         setDatetime(startdatetime)
         setDate(date)
+        setEndDate(date)
         setStartTime(startdatetime.toLocaleTimeString("en-US", { hour12: false }))
         setEndTime(newEndDatetime.toLocaleTimeString("en-US", { hour12: false }))
         setToggleModal(true)
@@ -99,9 +102,11 @@ const DateTimeSelector = ({day})=>{
                         setDate={setDate} 
                         setStartTime={setStartTime} 
                         setEndTime={setEndTime} 
+                        setEndDate={setEndDate}
                         date={date} 
                         startTime={startTime} 
                         endTime={endTime}
+                        endDate={endDate}
                     />
                 </div>
             </div>
