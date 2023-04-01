@@ -11,16 +11,19 @@ const Calendar = () =>{
 
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        dispatch(setSelectedDay(currentDay))
-    },[currentDay])
+
     
 
     const changeCurrentDay = (day) =>{
-        // dispatch(setSelectedDay(day))
-        
-        setCurrentDay(new Date(day.year, day.month, day.number))
+        // setCurrentDay(new Date(day.year, day.month, day.number))
+        dispatch(setSelectedDay(day)).then(()=>{
+            setCurrentDay(new Date(day.year, day.month, day.number))
+        })
     }
+
+    // useEffect(()=>{
+    //     dispatch(setSelectedDay(currentDay))
+    // },[currentDay])
 
     return(
         <div className='calendar'>

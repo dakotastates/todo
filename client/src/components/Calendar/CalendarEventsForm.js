@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { Clock } from 'react-bootstrap-icons';
 
 
-const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime, endTime, setEndDate, endDate}) =>{
+const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime, endTime, setEndDate, endDate, handleOpenModal}) =>{
     const [title, setTitle] = useState('')
     const [allDay, setAllDay] = useState(false)
 
@@ -62,7 +62,7 @@ const CalendarEventsForm = ({setDate, setStartTime, setEndTime, date, startTime,
             </div>
         </div>
         <div className='calendar__form-buttons'>
-            <div className='calendar__form-button'>Cancel</div>
+            <div className='calendar__form-button' onClick={handleOpenModal}>Cancel</div>
             <div className='calendar__form-button submit' onClick={handleSubmit}>Done</div>
         </div> 
         

@@ -1,9 +1,13 @@
+import {useEffect, useState} from 'react'
 import { useSelector} from 'react-redux'
 
 const CalendarDays = props =>{
     let firstDayOfMonth = new Date(props.day.getFullYear(), props.day.getMonth(), 1)
     let weekdayOfFirstDay = firstDayOfMonth.getDay(); 
-    let currentDays = []
+    let currentDays = [] 
+
+    const [loading, setLoading] = useState(false)
+
 
     const { events } = useSelector(state => state.calendar)
     
@@ -16,7 +20,9 @@ const CalendarDays = props =>{
           firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
         } 
         
-        const dayEvents = events.filter(event => JSON.stringify(firstDayOfMonth) >= JSON.stringify(event.startDate) && JSON.stringify(firstDayOfMonth) <= JSON.stringify(event.endDate))
+        const dayEvents = events.filter(event => JSON.stringify(firstDayOfMonth) >= JSON.stringify(event.startDate) && JSON.stringify(firstDayOfMonth) <= JSON.stringify(event.endDate)) 
+
+
         
         let calendarDay = {
           currentMonth: (firstDayOfMonth.getMonth() === props.day.getMonth()),
@@ -27,14 +33,41 @@ const CalendarDays = props =>{
           year: firstDayOfMonth.getFullYear(), 
           events: dayEvents
         }
-    
+
+
         currentDays.push(calendarDay);
-      }
+      } 
+
+
+
+
+      useEffect(()=>{
+        const today = currentDays.filter(day => day.date.toDateString() == props.day.toDateString())
+
+        if(today){
+          setLoading(true)
+        }
+        // const today = currentDays.filter(day => day.date.toDateString() == props.day.toDateString())
+        // const today = currentDays.reduce((res, day) =>  {
+        //   if  (day.date.toDateString() == props.day.toDateString()){
+        //     return day
+        //   }
+        // })
+
+          props.changeCurrentDay(today[0])
+      },[loading])
+      
 
     return(
         <div className='calendar__table-content'>
             {
             currentDays.map((day, index) => {
+              
+              // if (day.date.toDateString() == props.day.toDateString()){
+              //   // props.changeCurrentDay(day)
+              //   setToday(day)
+              // }
+    
                 return (
                 <div key={index} className={"calendar__day" + (day.currentMonth ? " current" : "") + (day.selected ? " selected" : "")}
                         onClick={() => props.changeCurrentDay(day)}>
