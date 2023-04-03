@@ -11,6 +11,7 @@ const CalendarDays = props =>{
 
     const { events } = useSelector(state => state.calendar)
     
+
     for (let day = 0; day < 42; day++) {
         if (day === 0 && weekdayOfFirstDay === 0) { 
           firstDayOfMonth.setDate(firstDayOfMonth.getDate() - 7);
@@ -20,8 +21,14 @@ const CalendarDays = props =>{
           firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
         } 
         
-        const dayEvents = events.filter(event => JSON.stringify(firstDayOfMonth) >= JSON.stringify(event.startDate) && JSON.stringify(firstDayOfMonth) <= JSON.stringify(event.endDate)) 
+        const dayEvents = events.filter(event => JSON.stringify(firstDayOfMonth).slice(0, -14) >= JSON.stringify(event.startDate).slice(0, -14) && JSON.stringify(firstDayOfMonth).slice(0, -14) <= JSON.stringify(event.endDate).slice(0, -14)) 
+        // const e = events.filter(event => {
+        //   // console.log(JSON.stringify(firstDayOfMonth))
+        //   console.log(event.title, event.startDate.slice(0, -14))
+        //   // return JSON.stringify(firstDayOfMonth) == JSON.stringify(event.startDate) 
 
+        // }) 
+        // console.log(e)
 
         
         let calendarDay = {
@@ -37,9 +44,11 @@ const CalendarDays = props =>{
 
         currentDays.push(calendarDay);
       } 
-
-
-
+      // console.log('currentdays',currentDays[9].events)
+      // useEffect(()=>{
+      //   console.log('currentdays',currentDays[9].events)
+      // },[events])
+      
 
       useEffect(()=>{
         const today = currentDays.filter(day => day.date.toDateString() == props.day.toDateString())
@@ -55,7 +64,7 @@ const CalendarDays = props =>{
         // })
 
           props.changeCurrentDay(today[0])
-      },[loading])
+      },[loading, events])
       
 
     return(
@@ -67,7 +76,7 @@ const CalendarDays = props =>{
               //   // props.changeCurrentDay(day)
               //   setToday(day)
               // }
-    
+              // console.log(day.events)
                 return (
                 <div key={index} className={"calendar__day" + (day.currentMonth ? " current" : "") + (day.selected ? " selected" : "")}
                         onClick={() => props.changeCurrentDay(day)}>

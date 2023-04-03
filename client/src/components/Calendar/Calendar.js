@@ -14,7 +14,8 @@ const Calendar = () =>{
 
     
 
-    const changeCurrentDay = (day) =>{
+    const changeCurrentDay = (day) =>{ 
+        console.log(day)
         // setCurrentDay(new Date(day.year, day.month, day.number))
         dispatch(setSelectedDay(day)).then(()=>{
             setCurrentDay(new Date(day.year, day.month, day.number))

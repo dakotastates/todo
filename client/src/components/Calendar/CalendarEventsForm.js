@@ -1,14 +1,18 @@
 import {useState, useEffect} from 'react'
 import { Clock } from 'react-bootstrap-icons';
+import {useDispatch} from 'react-redux'
+import {createEvent} from '../../store/calendar'
 
 
 const CalendarEventsForm = ({datetime, handleOpenModal}) =>{
     const [title, setTitle] = useState('')
     const [allDay, setAllDay] = useState(false)
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
-    const [startTime, setStartTime] = useState(null)
-    const [endTime, setEndTime] = useState(null)
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [startTime, setStartTime] = useState('')
+    const [endTime, setEndTime] = useState('')
+
+    const dispatch = useDispatch()
 
     const addHours = (date, hours)=>{
         date.setHours(date.getHours() + hours);
@@ -32,33 +36,19 @@ const CalendarEventsForm = ({datetime, handleOpenModal}) =>{
 
     
     const handleSubmit = () =>{
-        // {
-        //     id: 1,
-        //     type: 'event', 
-        //     title: '100 minutes before', 
-        //     startDate: '2023-03-19T07:00:00.000Z',
-        //     endDate: '2023-03-20T07:00:00.000Z', 
-        //     startTime: '2023-03-20T07:00:00', 
-        //     endTime: '2023-03-20T15:05:00'
-        //   }, 
 
-        // {
-        //     title: 'Testing',
-        //  startDate: '2023-04-03',
-        //   endDate: '2023-04-03',
-        //    startTime: '05:55:00',
-        //     endTime: '06:55:00'
-        // }
         const eventObj = {
             title: title, 
-            startDate: startDate, 
-            endDate: endDate,
+            startDate: `${startDate}T${startTime}.000Z`, 
+            endDate: `${endDate}T${startTime}.000Z`,
             startTime: `${startDate}T${startTime}`, 
             endTime: `${startDate}T${endTime}`
             
 
         }
-        console.log(eventObj)
+        dispatch(createEvent(eventObj)).then(()=>{
+            handleOpenModal()
+        })
     }
 
     return(

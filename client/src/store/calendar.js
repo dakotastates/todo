@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const data = [
   {
-    id: 1,
-    type: 'event', 
+
     title: '100 minutes before', 
     startDate: '2023-03-19T07:00:00.000Z',
     endDate: '2023-03-20T07:00:00.000Z', 
@@ -11,8 +10,7 @@ const data = [
     endTime: '2023-03-20T15:05:00'
   }, 
   {
-    id: 2,
-    type: 'reminder', 
+
     title: '20 minutes before',
     startDate: '2023-04-02T07:00:00.000Z',
     endDate: '2023-04-05T07:00:00.000Z',
@@ -20,8 +18,6 @@ const data = [
     endTime: '2023-04-05T10:45:00'
   }, 
   {
-    id: 3,
-    type: 'task', 
     title: '30 minutes before',
     startDate: '2023-03-26T07:00:00.000Z',
     endDate: '2023-03-30T07:00:00.000Z',
@@ -47,6 +43,11 @@ const slice = createSlice({
     getEventsSuccess: (state, action) => { 
       state.events = action.payload
     },
+
+    createEventSuccess: (state, action) => { 
+      console.log(action.payload)
+      state.events = [...state.events, action.payload]
+    },
   },
 }); 
 export default slice.reducer 
@@ -54,7 +55,8 @@ export default slice.reducer
 // Actions
 const { 
   setSelectedDaySuccess, 
-  getEventsSuccess
+  getEventsSuccess,
+  createEventSuccess
 
 } = slice.actions
 
@@ -85,3 +87,22 @@ export const getEvents = (id) => async dispatch => {
     return console.error(e.message);
   }
 } 
+
+export const createEvent = (event) => async dispatch => { 
+
+
+
+  try {
+    // const res = await fetch("http://localhost:3000/api/v1/events", configObj);
+    // const json = await res.json();
+    
+    // if (json.error) {
+    //   // debugger
+    //   throw new Error(json.error + " " + json.message);
+    // }
+    return dispatch(createEventSuccess(event))
+  } catch (e) {
+    return console.error(e.message);
+  }
+} 
+

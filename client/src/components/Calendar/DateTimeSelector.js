@@ -90,12 +90,18 @@ const DateTimeSelector = ({day, events})=>{
                             }
                             let datetime = new Date(slot.datetime)
                             datetime.setMinutes(minSlot)
+                            let today = new Date()
+
+                            let todayMarker
+                            if (slot.datetime.toDateString() == today.toDateString() && today.getHours() == slot.datetime.getHours() && today.getMinutes() == minSlot){
+                                todayMarker = <div className='calendar__today-marker'/>
+                            }
                         return(
                             <div className={timeslotDataClasses} onClick={()=>handleTimeSelect(datetime)} key={index}> 
-
+                                {todayMarker}
                             </div>
                         )})}
-
+                        
                         {slot.events?.map((event, index)=> {
                             let startTime = new Date(event.startTime)
                             let endTime = new Date(event.endTime)
