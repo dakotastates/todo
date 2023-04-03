@@ -330,5 +330,7 @@
     position: absolute;
     left: 50px;
     /* height: 60px; */
+    z-index: 1;
+    /* opacity: .8; */
 }
 
