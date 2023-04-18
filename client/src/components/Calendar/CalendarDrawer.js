@@ -20,6 +20,9 @@ const CalendarDrawer = () =>{
                 {moment(currentDay?.date).format("MM/DD/YYYY")}
             </div>
             <div className='right-side_drawer__content'>
+                <div className='calendar__drawer-all-day'>
+                    <div></div>
+                </div>
                 <DateTimeSelector day={currentDay?.date} events={currentDay?.events} />
             </div>
         </div>

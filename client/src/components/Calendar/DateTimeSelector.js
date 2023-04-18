@@ -6,7 +6,7 @@ import CalendarEventsForm from './CalendarEventsForm';
 const DateTimeSelector = ({day, events})=>{
     const [toggleModal, setToggleModal] = useState(false)
     const [datetime, setDatetime] = useState(null)
-
+    let today = new Date()
 
 
     const refModal = useRef(null) 
@@ -90,7 +90,7 @@ const DateTimeSelector = ({day, events})=>{
                             }
                             let datetime = new Date(slot.datetime)
                             datetime.setMinutes(minSlot)
-                            let today = new Date()
+                            
 
                             let todayMarker
                             if (slot.datetime.toDateString() == today.toDateString() && today.getHours() == slot.datetime.getHours() && today.getMinutes() == minSlot){

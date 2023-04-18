@@ -20,7 +20,7 @@ const CalendarPage = () =>{
 
     return(
         <div className='calendar__container'>
-        <Calendar />
+            <Calendar />
         </div>
     )
 

@@ -36,6 +36,7 @@ const CalendarDays = props =>{
           date: (new Date(firstDayOfMonth)),
           month: firstDayOfMonth.getMonth(),
           number: firstDayOfMonth.getDate(),
+          dayOfWeek: firstDayOfMonth.getDay(),
           selected: (firstDayOfMonth.toDateString() === props.day.toDateString()),
           year: firstDayOfMonth.getFullYear(), 
           events: dayEvents
@@ -83,9 +84,59 @@ const CalendarDays = props =>{
                     <p>{day.number}</p>
                     
                     <div className='calendar__on-event-container'>
-                      {day.events.map((event, index)=>(
-                        <div className='calendar__on-event' key={index}>{event.title}</div>
-                      ))}
+                      {day.events.map((event, index)=>{
+
+                        let sd = new Date(event.startDate)
+                        let ed = new Date(event.endDate)
+                        let diffTime = Math.abs(ed - sd)
+                        let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+                        // if (day.dayOfWeek == 6){
+                        //   ed = new Date(day.date)
+                        //   console.log(ed)
+                        // }
+                        // let sd
+                        // let ed 
+                        // let sd = new Date(event.startDate)
+                        // let ed = new Date(event.endDate)
+                        // let diffTime = Math.abs(ed - sd)
+                        // let diffTime
+                        // let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+                        // let diffDays
+                        
+                        if (day.dayOfWeek == 6){
+                          let sd = new Date(event.startDate)
+                          let ed = new Date(day.date)
+                          
+                          let diffTime = Math.abs(ed - sd)
+                          let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+                          // console.log('saturday',day.date)
+                          
+                        }
+                        
+                        
+                        
+
+                        // if (JSON.stringify(day.date).slice(0,-15)==JSON.stringify(event.startDate).slice(0,-15) || day.dayOfWeek == 0){
+
+
+                          // return(
+                          //   <div 
+                          //     className='calendar__on-event' 
+                          //     key={index}
+                          //     style={{ color: 'blue', width: `${diffDays*125}px`}}
+                          //   >{event.title}</div>
+                          // )
+                          
+                          // return(
+                          //   <div 
+                          //     className='calendar__on-event' 
+                          //     key={index}
+                          //     style={{ color: 'blue', width: `125px`}}
+                          //   >{(JSON.stringify(day.date).slice(0,-15)==JSON.stringify(event.startDate).slice(0,-15) || day.dayOfWeek == 0) ? event.title : null}</div>
+                          // )
+                        // }
+                      })}
                     </div>
                 </div>
                 )
