@@ -73,16 +73,21 @@ const Calendar = () => {
         isCurrentMonth: isCurrentMonth, 
         dayOfWeek: date.getDay(),
         selected: (date.toDateString() === currentDate.toDateString()),
-        events: dayEvents
+        events: dayEvents, 
+        slots: Array(4).fill()
       }
 
       daysArray.push(calendarDay);
+        // daysArray[i] = calendarDay
     }
 
     return daysArray;
   };
+  
+
 
   const daysArray = getDaysArray(currentDate);
+//   console.log(daysArray)
 
   const prevMonth = () => {
     const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
@@ -97,20 +102,25 @@ const Calendar = () => {
   let renderEvents = (startDate, endDate, day, event, index) =>{
 
     let diffTime = Math.abs(endDate - startDate)
-    let diffDays = Math.ceil((diffTime / (1000 * 60 * 60 * 24)) + 1)
+    let diffDays = Math.ceil((diffTime / (1000 * 60 * 60 * 24)) + 1) 
+    console.log('index', index)
+    const style = {
+        top: `${(day.events.length * 20)}px`,
+        width: `${(diffDays)*100}%`, 
+        
+      };
     
-    if (JSON.stringify(day.date).slice(0,-15)==JSON.stringify(event.startDate).slice(0,-15) || day.dayOfWeek == 0){
-        // console.log('diffDays')
+    if (JSON.stringify(day.date)?.slice(0,-15)==JSON.stringify(event.startDate)?.slice(0,-15) || day.dayOfWeek == 0){
         return (
             <div 
                 key={index} 
-                className='calendar__on-event ' 
-                style={{ color: 'blue', width: `${(diffDays)*100}%`}}
+                className='calendar__on-event'
+                style={style}
             >
-                {event.title}
+                {event?.title}
             </div>
         )
-    }
+    } 
 
   }
 
@@ -133,59 +143,65 @@ const Calendar = () => {
         <div className='weekday'>Sat</div>
       </div>
       <div className="days">
-        {daysArray.map((day) => (
-          <div 
-            key={day.date.toISOString()} 
-            className={`day ${day.isCurrentMonth ? ' current' : ''}` + (day.selected ? " selected" : "")}
-            onClick={() => changeCurrentDay(day)}
-            >
-            <div className="date">{day.date.getDate()}</div>
+        {daysArray.map((day, index) => {
             
-            <div className='calendar__on-event-container'>
-                {day.events.map((event, index) => {
-                    let startDate = new Date(event.startDate)
-                    let endDate = new Date(event.endDate)
-                    //Get week of start date
-                    let curr = new Date(day.date); 
-                    let first = curr.getDate() - curr.getDay(); 
-                    let last = first + 6; 
+            return(
+                <div 
+                    key={day.date.toISOString()} 
+                    className={`day ${day.isCurrentMonth ? ' current' : ''}` + (day.selected ? " selected" : "")}
+                    onClick={() => changeCurrentDay(day)}
+                >
+                <div className="date">{day.date.getDate()}</div>
+                
+                <div className='calendar__on-event-container'>
 
-                    let firstday = new Date(curr.setDate(first))
-                    let lastday = new Date(curr.setDate(last))
-                     
-                    // Check if start and end dates are within same week 
-                    if ( (startDate >= firstday && startDate <= lastday) && (endDate > firstday && endDate <= lastday) ){
-                        let sd = new Date(startDate)
-                        let ed = new Date(endDate)
+                    {day.events.map((event, index) => {
 
-                        return renderEvents(sd, ed, day, event, index)
-
-                     } else if ( startDate >= firstday && startDate <= lastday){
-                            // start date is in week, set end date to last day of week
-
-                            let ed = new Date(lastday)
-
-                            return renderEvents(startDate, ed, day, event, index)
-
-                        } else if (endDate >= firstday && endDate <= lastday){
-                            // enddate is in week, set start date to first day of week, 0
-                            let sd = new Date(firstday)
+                        let startDate = new Date(event.startDate)
+                        let endDate = new Date(event.endDate)
+                        //Get week of start date
+                        let curr = new Date(day.date); 
+                        let first = curr.getDate() - curr.getDay(); 
+                        let last = first + 6; 
+    
+                        let firstday = new Date(curr.setDate(first))
+                        let lastday = new Date(curr.setDate(last))
+                         
+                        // Check if start and end dates are within same week 
+                        if ( (startDate >= firstday && startDate <= lastday) && (endDate > firstday && endDate <= lastday) ){
+                            let sd = new Date(startDate)
                             let ed = new Date(endDate)
-
+    
                             return renderEvents(sd, ed, day, event, index)
+    
+                         } else if ( startDate >= firstday && startDate <= lastday){
+                                // start date is in week, set end date to last day of week
+    
+                                let ed = new Date(lastday)
+    
+                                return renderEvents(startDate, ed, day, event, index)
+    
+                            } else if (endDate >= firstday && endDate <= lastday){
+                                // enddate is in week, set start date to first day of week, 0
+                                let sd = new Date(firstday)
+                                let ed = new Date(endDate)
+    
+                                return renderEvents(sd, ed, day, event, index)
+    
+                            } else{ 
+                                //start and end date are first and last day of week
+                                let sd = new Date(firstday)
+                                let ed = new Date(lastday)
+    
+                                return renderEvents(sd, ed, day, event, index)
+                            }
+    
+                    })}
+                </div>
+              </div>
+            )
 
-                        } else{ 
-                            //start and end date are first and last day of week
-                            let sd = new Date(firstday)
-                            let ed = new Date(lastday)
-
-                            return renderEvents(sd, ed, day, event, index)
-                        }
-
-                })}
-            </div>
-          </div>
-        ))}
+        })}
       </div>
     </div>
   );
@@ -193,55 +209,3 @@ const Calendar = () => {
 
 export default Calendar;
 
-
-// import {useState, useEffect} from 'react'; 
-// import CalendarDays from './CalendarDays';
-// import {setSelectedDay} from '../../store/calendar'
-// import {useDispatch, useSelector} from 'react-redux'
-
-// const Calendar = () =>{
-//     const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-//     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octobor', 'November', 'December']
-
-//     const [currentDay, setCurrentDay] = useState(new Date() )
-
-//     const dispatch = useDispatch()
-
-
-    
-
-//     const changeCurrentDay = (day) =>{ 
-//         console.log(day)
-//         // setCurrentDay(new Date(day.year, day.month, day.number))
-//         dispatch(setSelectedDay(day)).then(()=>{
-//             setCurrentDay(new Date(day.year, day.month, day.number))
-//         })
-//     }
-
-//     // useEffect(()=>{
-//     //     dispatch(setSelectedDay(currentDay))
-//     // },[currentDay])
-
-//     return(
-//         <div className='calendar'>
-//             <div className='calendar__header'>
-//                 <h2>{months[currentDay.getMonth()]} {currentDay.getFullYear()}</h2>
-//             </div>
-//             <div className='calendar__body'>
-//                 <div className='calendar__table-header'>
-//                     {
-//                         weekdays.map((weekday, index)=>{
-//                             return <div key={index} className='calendar__weekday'><p>{weekday}</p></div>
-//                         })
-//                     }
-//                 </div>
-//                 <div className='calendar__table'>
-//                     <CalendarDays day={currentDay} changeCurrentDay={changeCurrentDay} />
-//                 </div>
-//             </div>
-//         </div>
-//     )
-
-// }
-
-// export default Calendar

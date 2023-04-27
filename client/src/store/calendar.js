@@ -2,36 +2,37 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const data = [
   {
-
-    title: '100 minutes before', 
+    id: 1,
+    title: 'Event 1', 
     startDate: '2023-03-19T07:00:00.000Z',
     endDate: '2023-03-20T07:00:00.000Z', 
     startTime: '2023-03-20T07:00:00', 
     endTime: '2023-03-20T15:05:00'
   }, 
   {
-
-    title: '20 minutes before',
+    id: 2,
+    title: 'Event 2',
     startDate: '2023-04-05T07:00:00.000Z',
     endDate: '2023-04-25T07:00:00.000Z',
     startTime: '2023-04-05T09:15:00', 
     endTime: '2023-04-05T10:45:00'
   }, 
   {
-    title: '30 minutes before',
+    id: 3,
+    title: 'Event 3',
     startDate: '2023-03-26T07:00:00.000Z',
     endDate: '2023-03-30T07:00:00.000Z',
     startTime: '2023-03-30T09:15:00', 
     endTime: '2023-03-30T11:30:00'
   },
-  // {
-
-  //   title: '120 minutes before',
-  //   startDate: '2023-04-04T07:00:00.000Z',
-  //   endDate: '2023-04-09T07:00:00.000Z',
-  //   startTime: '2023-04-05T09:15:00', 
-  //   endTime: '2023-04-05T10:45:00'
-  // }, 
+  {
+    id: 4,
+    title: 'Event 4',
+    startDate: '2023-04-04T07:00:00.000Z',
+    endDate: '2023-04-09T07:00:00.000Z',
+    startTime: '2023-04-05T09:15:00', 
+    endTime: '2023-04-05T10:45:00'
+  }, 
 
 ]
 
