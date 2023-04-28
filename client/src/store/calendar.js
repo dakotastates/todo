@@ -14,16 +14,16 @@ const data = [
     title: 'Event 2',
     startDate: '2023-04-05T07:00:00.000Z',
     endDate: '2023-04-25T07:00:00.000Z',
-    startTime: '2023-04-05T09:15:00', 
-    endTime: '2023-04-05T10:45:00'
+    startTime: '2023-04-05T01:15:00', 
+    endTime: '2023-04-05T03:45:00'
   }, 
   {
     id: 3,
     title: 'Event 3',
     startDate: '2023-03-26T07:00:00.000Z',
     endDate: '2023-03-30T07:00:00.000Z',
-    startTime: '2023-03-30T09:15:00', 
-    endTime: '2023-03-30T11:30:00'
+    startTime: '2023-03-30T01:15:00', 
+    endTime: '2023-03-30T02:30:00'
   },
   {
     id: 4,

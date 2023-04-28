@@ -78,7 +78,6 @@ const Calendar = () => {
       }
 
       daysArray.push(calendarDay);
-        // daysArray[i] = calendarDay
     }
 
     return daysArray;
@@ -87,7 +86,6 @@ const Calendar = () => {
 
 
   const daysArray = getDaysArray(currentDate);
-//   console.log(daysArray)
 
   const prevMonth = () => {
     const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
@@ -103,24 +101,33 @@ const Calendar = () => {
 
     let diffTime = Math.abs(endDate - startDate)
     let diffDays = Math.ceil((diffTime / (1000 * 60 * 60 * 24)) + 1) 
-    console.log('index', index)
+    
     const style = {
-        top: `${(day.events.length * 20)}px`,
+        top: `${(index * 20) + 20}px`,
+        // left: `${((startDate.getDay() - 1) * 14) + 30}px`,
+        // width: `${((endDate.getDay() - startDate.getDay()) + 1) * 14}px`,
         width: `${(diffDays)*100}%`, 
         
       };
+
+      let eventClasses
+      if (JSON.stringify(day.date)?.slice(0,-15)==JSON.stringify(event.startDate)?.slice(0,-15) || day.dayOfWeek == 0){
+        eventClasses = 'calendar__on-event'
+      }
     
-    if (JSON.stringify(day.date)?.slice(0,-15)==JSON.stringify(event.startDate)?.slice(0,-15) || day.dayOfWeek == 0){
+    // if (JSON.stringify(day.date)?.slice(0,-15)==JSON.stringify(event.startDate)?.slice(0,-15) || day.dayOfWeek == 0){
+        console.log(day.date, day.events.length, event.title, index)
         return (
             <div 
                 key={index} 
-                className='calendar__on-event'
+                className={eventClasses}
                 style={style}
             >
-                {event?.title}
+                {/* {event.title} */}
+                {(JSON.stringify(day.date)?.slice(0,-15)==JSON.stringify(event.startDate)?.slice(0,-15) || day.dayOfWeek == 0) ? event?.title : null}
             </div>
         )
-    } 
+    // } 
 
   }
 
@@ -144,7 +151,8 @@ const Calendar = () => {
       </div>
       <div className="days">
         {daysArray.map((day, index) => {
-            
+
+            day.events.sort((a,b)=> b.id - a.id)
             return(
                 <div 
                     key={day.date.toISOString()} 
@@ -154,6 +162,8 @@ const Calendar = () => {
                 <div className="date">{day.date.getDate()}</div>
                 
                 <div className='calendar__on-event-container'>
+
+                    
 
                     {day.events.map((event, index) => {
 
@@ -166,6 +176,7 @@ const Calendar = () => {
     
                         let firstday = new Date(curr.setDate(first))
                         let lastday = new Date(curr.setDate(last))
+
                          
                         // Check if start and end dates are within same week 
                         if ( (startDate >= firstday && startDate <= lastday) && (endDate > firstday && endDate <= lastday) ){
