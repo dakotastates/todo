@@ -40,10 +40,10 @@ const DateTimeSelector = ({day, events})=>{
         
         // const eventsFiltered = events?.filter(event=>hour == event.startTime.slice(0, -3) )
         const eventsFiltered = events?.filter(event=>{
-            let st = new Date(event.startTime)
+            let st = new Date(event.startDate)
             let startTime = st.getHours()
             startTime = ("0" + startTime).slice(-2)
-            return hour == startTime
+            return hour == startTime && !event.allDay
         } )
 
 
@@ -103,8 +103,8 @@ const DateTimeSelector = ({day, events})=>{
                         )})}
                         
                         {slot.events?.map((event, index)=> {
-                            let startTime = new Date(event.startTime)
-                            let endTime = new Date(event.endTime)
+                            let startTime = new Date(event.startDate)
+                            let endTime = new Date(event.endDate)
                             let timeDiff = (endTime - startTime)
                             let diffMins = Math.floor(timeDiff / 60000) 
                             let startMins = startTime.getMinutes()

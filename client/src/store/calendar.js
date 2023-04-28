@@ -5,33 +5,37 @@ const data = [
     id: 1,
     title: 'Event 1', 
     startDate: '2023-03-19T07:00:00.000Z',
-    endDate: '2023-03-20T07:00:00.000Z', 
-    startTime: '2023-03-20T07:00:00', 
-    endTime: '2023-03-20T15:05:00'
+    endDate: '2023-03-20T08:00:00.000Z', 
+    allDay: true,
+    // startTime: '2023-03-20T07:00:00', 
+    // endTime: '2023-03-20T15:05:00'
   }, 
   {
     id: 2,
     title: 'Event 2',
     startDate: '2023-04-05T07:00:00.000Z',
-    endDate: '2023-04-25T07:00:00.000Z',
-    startTime: '2023-04-05T01:15:00', 
-    endTime: '2023-04-05T03:45:00'
+    endDate: '2023-04-25T08:00:00.000Z',
+    allDay: true,
+    // startTime: '2023-04-05T01:15:00', 
+    // endTime: '2023-04-05T03:45:00'
   }, 
   {
     id: 3,
     title: 'Event 3',
     startDate: '2023-03-26T07:00:00.000Z',
-    endDate: '2023-03-30T07:00:00.000Z',
-    startTime: '2023-03-30T01:15:00', 
-    endTime: '2023-03-30T02:30:00'
+    endDate: '2023-03-26T08:00:00.000Z',
+    allDay: false,
+    // startTime: '2023-03-30T01:15:00', 
+    // endTime: '2023-03-30T02:30:00'
   },
   {
     id: 4,
     title: 'Event 4',
     startDate: '2023-04-04T07:00:00.000Z',
-    endDate: '2023-04-09T07:00:00.000Z',
-    startTime: '2023-04-05T09:15:00', 
-    endTime: '2023-04-05T10:45:00'
+    endDate: '2023-04-09T08:00:00.000Z',
+    allDay: true,
+    // startTime: '2023-04-05T09:15:00', 
+    // endTime: '2023-04-05T10:45:00'
   }, 
 
 ]

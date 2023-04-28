@@ -100,13 +100,13 @@ const Calendar = () => {
   let renderEvents = (startDate, endDate, day, event, index) =>{
 
     let diffTime = Math.abs(endDate - startDate)
-    let diffDays = Math.ceil((diffTime / (1000 * 60 * 60 * 24)) + 1) 
+    let diffDays = Math.ceil((diffTime / (1000 * 60 * 60 * 24)) ) 
     
     const style = {
         top: `${(index * 20) + 20}px`,
         // left: `${((startDate.getDay() - 1) * 14) + 30}px`,
-        // width: `${((endDate.getDay() - startDate.getDay()) + 1) * 14}px`,
-        width: `${(diffDays)*100}%`, 
+        width: `${((endDate.getDay() - startDate.getDay()) + 1) * 100}%`,
+        // width: `${(diffDays)*100}%`, 
         
       };
 
@@ -116,7 +116,6 @@ const Calendar = () => {
       }
     
     // if (JSON.stringify(day.date)?.slice(0,-15)==JSON.stringify(event.startDate)?.slice(0,-15) || day.dayOfWeek == 0){
-        console.log(day.date, day.events.length, event.title, index)
         return (
             <div 
                 key={index} 
