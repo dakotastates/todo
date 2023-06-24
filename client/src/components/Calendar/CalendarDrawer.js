@@ -21,15 +21,16 @@ const CalendarDrawer = () =>{
             </div>
             <div className='right-side_drawer__content'>
                 <div className='calendar__drawer-all-day'>
-                    
-                    {currentDay?.events.filter(e=> e.allDay).map(e => {
+                    <div>Today's Events</div>
+                    <div className='calendar__drawer-all-day-events-container'>
+                    {currentDay?.events.filter(e=> e.allDay).map((e) => {
                         return (
-                            <div>
+                            <div key={e.id} className='calendar__drawer-all-day-event'>
                                 {e.title}
                             </div>
                         )
                     })}
-                    
+                    </div>
                 </div>
                 <DateTimeSelector day={currentDay?.date} events={currentDay?.events} />
             </div>

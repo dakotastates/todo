@@ -275,10 +275,6 @@
     border-radius: 5px;
 }
 
-.calendar__drawer-all-day{
-    padding: 10px;
-}
-
 .calendar__form-buttons{
     display: flex;
     width: 100%;
@@ -299,6 +295,24 @@
     display: flex;
 }
 
+.calendar__slot-event-times{
+    font-size: .8rem;
+}
 
+.calendar__drawer-all-day{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
 
+.calendar__drawer-all-day-event{
+    font-size: .9rem;
+    background-color: lightblue;
+    border-radius: 50px;
+    padding: 0 5px;
+    margin: 0 1px;
+}
 
+.calendar__drawer-all-day-events-container{
+    display: flex;
+}

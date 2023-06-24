@@ -37,6 +37,27 @@ const data = [
     // startTime: '2023-04-05T09:15:00', 
     // endTime: '2023-04-05T10:45:00'
   }, 
+  {
+    id: 5,
+    title: 'Single Day Event',
+    startDate: '2023-05-22T07:00:00.000Z',
+    endDate: '2023-05-22T08:00:00.000Z',
+    allDay: false,
+  }, 
+  {
+    id: 6,
+    title: 'Next Day Event',
+    startDate: '2023-05-23T07:00:00.000Z',
+    endDate: '2023-05-24T08:00:00.000Z',
+    allDay: false,
+  }, 
+  {
+    id: 7,
+    title: 'Two Day Event',
+    startDate: '2023-05-22T07:00:00.000Z',
+    endDate: '2023-05-23T08:00:00.000Z',
+    allDay: false,
+  }, 
 
 ]
 
@@ -58,7 +79,8 @@ const slice = createSlice({
     },
 
     createEventSuccess: (state, action) => { 
-      console.log(action.payload)
+      // console.log(action.payload)
+      // debugger
       state.events = [...state.events, action.payload]
     },
   },

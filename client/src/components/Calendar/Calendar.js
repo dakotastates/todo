@@ -101,7 +101,7 @@ const Calendar = () => {
 
     let diffTime = Math.abs(endDate - startDate)
     let diffDays = Math.ceil((diffTime / (1000 * 60 * 60 * 24)) ) 
-    
+    // console.log('index', index)
     const style = {
         top: `${(index * 20) + 20}px`,
         // left: `${((startDate.getDay() - 1) * 14) + 30}px`,

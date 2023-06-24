@@ -113,8 +113,12 @@ const DateTimeSelector = ({day, events})=>{
                                 className='calendar__slot-event'  
                                 key={(index)}
                                 style={{ top: `${startMins}px`, color: 'blue', height: `${diffMins}px`}}
+                                onClick={console.log('slot event', event)}
                             >
-                                {event.title}
+                                {event.title} 
+                                <div className='calendar__slot-event-times'>
+                                    {new Date(event.startDate).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})} - {new Date(event.endDate).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})}
+                                </div>
                             </div>
                         )})}
 
