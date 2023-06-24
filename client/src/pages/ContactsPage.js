@@ -9,7 +9,7 @@ const ContactsPage = ()=>{
         jobTitle: 'Contact 1 Title', 
         labels: ['label 3', 'label 4'],
         birthday: '1/1/1990', 
-        imageUrl: 'image url'
+        imageUrl: 'https://www.pngarts.com/files/10/Default-Profile-Picture-PNG-Image-Transparent-Background.png'
     }, {
         id: 2, 
         name: 'Contact 2', 
@@ -18,7 +18,7 @@ const ContactsPage = ()=>{
         jobTitle: 'Contact 2 Title', 
         labels: ['label 1', 'label 3'],
         birthday: '2/2/1990', 
-        imageUrl: 'image url'
+        imageUrl: ''
     },{
         id: 3, 
         name: 'Contact 3', 
@@ -27,13 +27,13 @@ const ContactsPage = ()=>{
         jobTitle: 'Contact 3 Title', 
         labels: ['label 1', 'label 2'],
         birthday: '3/3/1990', 
-        imageUrl: 'image url'
+        imageUrl: 'https://img.freepik.com/free-icon/user_318-563642.jpg'
     }]
     return(
         <div>
             <h2>Contact Page</h2>
             {/* Search funtion */}
-            <input type='text' placeholder="Search" />
+            <input className='contacts__search' type='text' placeholder="Search" />
             {/* Table for contacts */}
             <Contacts data={data} />
         </div>
