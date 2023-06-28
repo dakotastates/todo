@@ -1,8 +1,84 @@
-.contacts__profile-container{
+.profile__container{
     /* background-color: pink; */
 }
 
-.contacts__profile-header{
+.profile__header{
     display: flex;
-    justify-content: space-between;
+}
+
+.profile__back-btn{
+    font-size: 20px;
+}
+
+.profile__avatar{
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-bottom: 30px;
+}
+
+.profile__name-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:start;
+    width: 500px;
+    margin: 30px;
+}
+
+.profile__name{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.profile__label-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(156, 160, 164);
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.profile__menu{
+    display: flex;
+    justify-content:space-around;
+    align-items: end;
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+.profile__edit-btn{
+    border: 1px solid rgb(26,115,232);
+    padding: 5px 15px 5px 15px;
+    border-radius: 4px;
+    background-color: rgb(26,115,232);
+    color: #fff;
+}
+
+.profile__edit-btn:hover{
+    background-color: rgb(9, 104, 228);
+}
+
+.profile__divider{
+    border-bottom: 1px solid rgb(156, 160, 164);
+    
+}
+
+.profile__details-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    border: 1px solid rgb(156, 160, 164);
+    border-radius: 5px;
+    margin: 30px;
+    padding: 10px;
+    width: 50%;
+}
+
+.profile__details-label{
+    font-size: 20px;
 }
