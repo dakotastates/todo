@@ -1,6 +1,6 @@
 import {useState} from "react"; 
 import './Contacts.css'
-import { Trash, Pencil, Star, ThreeDotsVertical, Printer, Upload } from 'react-bootstrap-icons';
+import { Trash, Pencil, Star, ThreeDotsVertical, Printer, Upload, Plus } from 'react-bootstrap-icons';
 import ToolbarDropdown from "../Toolbar/ToolbarDropdown";
 import ContactDropdownMenu from "./ContactDropdownMenu";
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,10 @@ const Contacts = (props)=>{
                     </th>
                 </tr>
             </thead>
-            <div className='contacts__count-bar'>Contacts ({props.data.length})</div>
+            <div className='contacts__count-bar-container'>
+                <div className='contacts__count-bar'>Contacts ({props.data.length}) </div>
+                <div onClick={()=>navigate('/contacts/new')} className='contacts__new-btn'><Plus /> Create Contact</div>
+            </div>
             <tbody>
                 {props.data.map((contact, index)=>(
                     <tr key={contact.id} onClick={()=> navigate(`/contacts/${contact.id}`)}>

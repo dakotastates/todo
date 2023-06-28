@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { ThreeDotsVertical, Trash, Printer, Upload } from 'react-bootstrap-icons';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import './ContactDropdownMenu.css'
+import {deleteContact} from '../../store/contacts'
 
 
 const ContactDropdownMenu = props =>{
     const [toggleMenu, setToggleMenu] = useState(false)
-    const [selectedList, setSelectedList] = useState(null)
 
     const dispatch = useDispatch() 
 
@@ -38,7 +38,7 @@ const ContactDropdownMenu = props =>{
                        <div className='contact__menu'>
                             <div className='contact__menu-item'><Printer /> <div className='contact__menu-item-text'>Print </div> <div className='spacer' /></div>
                             <div className='contact__menu-item'><Upload/> <div className='contact__menu-item-text'>Export </div> <div className='spacer' /></div>
-                            <div className='contact__menu-item'><Trash /> <div className='contact__menu-item-text'> Delete </div> <div className='spacer' /></div>
+                            <div className='contact__menu-item' onClick={()=>dispatch(deleteContact(props.id))}><Trash /> <div className='contact__menu-item-text'> Delete </div> <div className='spacer' /></div>
                        </div>
 
             </div>

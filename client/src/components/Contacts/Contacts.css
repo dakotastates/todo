@@ -28,6 +28,10 @@ td{
     white-space: nowrap;
 }
 
+.contacts__count-bar-container{
+    display: flex;
+    justify-content: space-between;
+}
 .contacts__count-bar{
     color: #5f6368;
     font-weight: 500;
@@ -37,6 +41,20 @@ td{
     max-height: 20px;
     letter-spacing: .07272727em;
     margin-bottom: 10px;
+}
+
+.contacts__new-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: rgb(26,115,232);
+}
+
+.contacts__new-btn:hover{
+    background-color: rgb(9, 104, 228);
 }
 
 tbody > tr{

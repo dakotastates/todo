@@ -156,8 +156,19 @@ export const updateContact = (contact, id) => async dispatch => {
 
 export const deleteContact = (id) => async dispatch => {
 
+  const configObj = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  };
+  try {
 
-try {
+    const res = await fetch(`http://localhost:3000/api/v1/contacts/${id}`, configObj);
+    const json = await res.json();
+    
     return dispatch(deleteContactSuccess(id))
   } catch (e) {
     return console.error(e.message);
