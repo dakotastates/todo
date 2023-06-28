@@ -62,6 +62,7 @@ function App() {
           <Routes>
             <Route path='/tasks/:id' element={<><TasksPage /></>} />
             <Route path='/contacts/:id' element={<><ContactProfilePage /></>} />
+            <Route path='/contacts/new' element={<><ContactProfilePage /></>} />
             <Route path='/tasks' element={<><TasksPage /></>} />
             <Route path='/calendar' element={<><CalendarPage/></>} />
             <Route path='/contacts' element={<><ContactsPage/></>} />

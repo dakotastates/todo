@@ -55,7 +55,7 @@ const Contacts = (props)=>{
                         <td>
                             <div className='contacts__options-container' onClick={(e)=> e.stopPropagation()}>
                                 <Star />
-                                <Pencil />
+                                <Pencil onClick={()=> navigate(`/contacts/${contact.id}?edit=true`)} />
                                 <ContactDropdownMenu id={contact.id} />
                             </div>
 

@@ -42,12 +42,17 @@
     padding: 5px;
 }
 
+.profile__menu-container{
+    display: flex;
+    align-items: end;
+}
+
 .profile__menu{
     display: flex;
-    justify-content:space-around;
-    align-items: end;
     width: 150px;
     margin-bottom: 30px;
+    justify-content:space-around;
+    align-items: center;
 }
 
 .profile__edit-btn{
@@ -56,6 +61,7 @@
     border-radius: 4px;
     background-color: rgb(26,115,232);
     color: #fff;
+    cursor: pointer;
 }
 
 .profile__edit-btn:hover{
@@ -81,4 +87,37 @@
 
 .profile__details-label{
     font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.profile__form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.profile__form-group-container{
+    display: flex;
+    /* margin: 5px; */
+    justify-content: center;
+    align-items: start;
+    font-size: 20px;
+    
+}
+
+.profile__form-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.profile__form-input > input {
+    height: 35px;
+    width: 50%;
+    
+    margin: 0 10px 10px 5px;
+    border-radius: 4px;
+    padding: 5px;
 }
