@@ -44,6 +44,7 @@ const slice = createSlice({
   name: 'contacts',
   initialState: {
     contacts: [], 
+    contact: {}
   },
   reducers: {
     createContactSuccess: (state, action) => {
@@ -51,6 +52,10 @@ const slice = createSlice({
     },
     getContactsSuccess: (state, action) =>  { 
       state.contacts = action.payload
+    },
+    getContactSuccess: (state, action) =>  { 
+      // const contact = state.contacts.find((contact)=> contact.id == action.payload)
+        state.contact = action.payload
     },
     updateContactSuccess: (state, action) =>  {
       const contact = state.contacts.find((contact) => contact.id === action.payload.id)
@@ -71,34 +76,79 @@ const slice = createSlice({
 export default slice.reducer 
 
 // Actions
-const { createContactSuccess, getContactsSuccess, updateContactSuccess, deleteContactSuccess } = slice.actions
+const { createContactSuccess, getContactsSuccess, updateContactSuccess, deleteContactSuccess, getContactSuccess } = slice.actions
 
 export const createContact = (contact) => async dispatch => {
 
 
-try {
-    return dispatch(createContactSuccess(contact))
+  const configObj = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+    body: JSON.stringify({contact}),
+  };
+
+  try {
+    const res = await fetch("http://localhost:3000/api/v1/contacts", configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+
+      throw new Error(json.error + " " + json.message);
+    }
+    dispatch(createContactSuccess(json)) 
   } catch (e) {
     return console.error(e.message);
   }
 }
+
 export const getContacts = () => async dispatch => { 
+  const configObj = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  };
 
-
-
-try {
-    return dispatch(getContactsSuccess(data))
+  try {
+    const res = await fetch("http://localhost:3000/api/v1/contacts", configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+      // debugger
+      throw new Error(json.error + " " + json.message);
+    }
+    return dispatch(getContactsSuccess(json))
   } catch (e) {
     return console.error(e.message);
   }
 } 
 
-export const updateContact = (contact) => async dispatch => { 
+export const updateContact = (contact, id) => async dispatch => { 
   
 
-
-try {
-    return dispatch(updateContactSuccess(contact))
+  const configObj = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+    body: JSON.stringify({contact}),
+  };
+  
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/contacts/${id}`, configObj);
+    const json = await res.json();
+    
+    if (json.error) {
+      
+      throw new Error(json.error + " " + json.message);
+    }
+    return dispatch(updateContactSuccess(json))
   } catch (e) {
     return console.error(e.message);
   }
@@ -110,6 +160,30 @@ export const deleteContact = (id) => async dispatch => {
 try {
     return dispatch(deleteContactSuccess(id))
   } catch (e) {
+    return console.error(e.message);
+  }
+} 
+
+export const getContact = (id) => async dispatch => {
+
+  const configObj = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  };
+  
+  try {
+    const res = await fetch(`http://localhost:3000/api/v1/contacts/${id}`, configObj);
+    
+    const json = await res.json();
+    
+    if (json.error) {
+      throw new Error(json.error + " " + json.message);
+    }
+    return dispatch(getContactSuccess(json))
+  } catch (e) {
+    
     return console.error(e.message);
   }
 } 

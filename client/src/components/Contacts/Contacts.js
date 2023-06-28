@@ -45,12 +45,12 @@ const Contacts = (props)=>{
                                 <div onClick={(e)=> e.stopPropagation()} className='contacts__avatar-checkbox'><input className='contacts__checkbox' type='checkbox' /></div>
                                 <img src={contact.imageUrl ? contact.imageUrl : "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"} alt="Avatar" class="avatar" />
                             
-                            <div >{contact.name}</div>
+                            <div >{contact.first_name}</div>
                             </div>
                         </td>
                         <td>{contact.email}</td>
                         <td>{contact.phone}</td>
-                        <td>{contact.jobTitle}</td>
+                        <td>{contact.job_title}</td>
                         <td>{contact.labels}</td>
                         <td>
                             <div className='contacts__options-container' onClick={(e)=> e.stopPropagation()}>
