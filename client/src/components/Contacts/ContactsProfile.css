@@ -88,6 +88,14 @@
 .profile__details-label{
     font-size: 20px;
     margin-bottom: 10px;
+} 
+
+.profile__details-item-container{
+    display: flex;
+}
+
+.profile__details-item{
+    margin-left: 10px;
 }
 
 .profile__form-container{

@@ -5,6 +5,7 @@ import user from './user'
 import notifs from './notifs'
 import lists from './lists'
 import calendar from './calendar'
+import contacts from './contacts'
 
 
 const reducer = combineReducers({
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     user, 
     notifs, 
     lists, 
-    calendar
+    calendar, 
+    contacts
 })
 const store = configureStore({
   reducer,
