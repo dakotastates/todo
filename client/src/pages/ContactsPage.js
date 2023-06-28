@@ -7,7 +7,7 @@ const ContactsPage = ()=>{
         email: 'contact1@test.com', 
         phone: '555-555-5555', 
         jobTitle: 'Contact 1 Title', 
-        labels: ['label 3', 'label 4'],
+        labels: [],
         birthday: '1/1/1990', 
         imageUrl: 'https://www.pngarts.com/files/10/Default-Profile-Picture-PNG-Image-Transparent-Background.png'
     }, {
@@ -25,13 +25,13 @@ const ContactsPage = ()=>{
         email: 'contact3@test.com', 
         phone: '555-555-5555', 
         jobTitle: 'Contact 3 Title', 
-        labels: ['label 1', 'label 2'],
+        labels: [],
         birthday: '3/3/1990', 
         imageUrl: 'https://img.freepik.com/free-icon/user_318-563642.jpg'
     }]
     return(
         <div>
-            <h2>Contact Page</h2>
+            <h2>Contacts</h2>
             {/* Search funtion */}
             <input className='contacts__search' type='text' placeholder="Search" />
             {/* Table for contacts */}

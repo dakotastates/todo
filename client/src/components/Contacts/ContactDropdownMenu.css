@@ -1,0 +1,23 @@
+.contact__menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact__menu-item{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    height: 30px;
+    align-items: center;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.contact__menu-item:hover{
+    background: lightgray;
+}
+
+.contact__menu-item-text{
+    padding-left: 10px;
+}

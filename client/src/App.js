@@ -14,6 +14,7 @@ import AuthPage from "./pages/AuthPage";
 import { useSelector} from 'react-redux'
 
 import "./App.css";
+import ContactProfilePage from "./pages/ContactProfilePage";
 
 
 function App() {  
@@ -60,6 +61,7 @@ function App() {
         <div className='main-content'> 
           <Routes>
             <Route path='/tasks/:id' element={<><TasksPage /></>} />
+            <Route path='/contacts/:id' element={<><ContactProfilePage /></>} />
             <Route path='/tasks' element={<><TasksPage /></>} />
             <Route path='/calendar' element={<><CalendarPage/></>} />
             <Route path='/contacts' element={<><ContactsPage/></>} />

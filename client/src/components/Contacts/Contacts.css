@@ -41,6 +41,7 @@ td{
 
 tbody > tr{
     height: 56px;
+    cursor: pointer;;
 }
 
 tbody > tr:hover{
@@ -56,6 +57,7 @@ tbody > tr:hover .contacts__avatar-checkbox {
 tbody > tr:hover .avatar {
     display: none;
 }
+
 
 .contacts__search{
     width: 90%;
@@ -75,7 +77,7 @@ tbody > tr:hover .avatar {
     height: 30px;
     width: 30px;
     margin-right: 5px;
-
+    
 }
 
 .avatar {
@@ -89,4 +91,23 @@ tbody > tr:hover .avatar {
   .contacts__checkbox{
     height: 15px;
     width: 15px;
+    
   }
+
+  .contacts__header-options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+  }
+
+  .contacts__options-container{
+    display: none;
+    /* pointer-events: none; */
+  }
+
+  tbody > tr:hover .contacts__options-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
